@@ -4,10 +4,10 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, CF7 Authorize.Net, contact form, contact form 7, Contact Form 7 + PayPal, Contact Form 7 + Authorize.Net, contact form 7 sagepay, contact form 7 to paypal redirect, contact forms, Contact Forms 7, contacted, contactform7, contacts, donation on WordPress site, form, forms, integrate paypal button, integrate paypal with contact form 7, integrate Authorize.Net with contact form 7, integrate Authorize.Net, online payment, pay online, payment using credit card, payments on WordPress site, paypal button, Authorize.Net donation, Authorize.Net Payment Gateway, Authorize.Net plugin for wordpress, Paypal submit, redirect PayPal, redirect to paypal, Authorize.Net, Authorize.Net, Authorize.Net API, Authorize.Net checkout, Authorize.Net donation, Authorize.Net integration in Contact Form 7, Authorize.Net payment, Authorize.Net payment gateway, Authorize.Net plugin for wordpress, super Authorize.Net, wp Authorize.Net
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.0
+Tested up to: 6.1.1
 License: GPLv3 or later License
 CF7 requires at least: 5.0
-CF7 tested up to: 5.4
+CF7 tested up to: 5.6.4
 Version: 1.3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
