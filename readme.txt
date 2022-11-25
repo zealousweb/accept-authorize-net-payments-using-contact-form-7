@@ -11,7 +11,7 @@ CF7 tested up to: 5.4
 Version: 1.3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Contact Form 7 - Integrate Authorize.Net payment gateway for making your payments through Contact Form 7. 
+Contact Form 7 - Integrate Authorize.Net payment gateway for making your payments through Contact Form 7.
 
 == Description ==
 
@@ -19,7 +19,7 @@ Shortly after integrating a PayPal and Stripe payment gateway with Contact Form 
 
 The process works very efficiently; once the users submit the contact form, the payment checkout form is then displayed before them for quick and secure transactions. This indicates that Accept Authorize.NET Payments Using Contact Form 7 can help your websites to generate revenue quickly.
 
-The Add-on provides you the option to make payment only once. There is no recurring payment option available. Users can select the option to make payment for one time since recurring transactions are not allowed. Our technical team supports the integration of Accept Authorize.NET Payments Using Contact Form 7 within 30 days from the date of purchase, including all the public holidays and weekends. However, we do not assure the Accept Authorize.NET Payments Using Contact Form 7 with any other third-party Add-on. Our team shall look into the compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Add-ons within 30 days of support if the task is of less complexity. Our team will charge extra for more complex issues of compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Ad-ons. The complexity of the tasks will solely be decided by and will at the discretion of ZealousWeb. 
+The Add-on provides you the option to make payment only once. There is no recurring payment option available. Users can select the option to make payment for one time since recurring transactions are not allowed. Our technical team supports the integration of Accept Authorize.NET Payments Using Contact Form 7 within 30 days from the date of purchase, including all the public holidays and weekends. However, we do not assure the Accept Authorize.NET Payments Using Contact Form 7 with any other third-party Add-on. Our team shall look into the compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Add-ons within 30 days of support if the task is of less complexity. Our team will charge extra for more complex issues of compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Ad-ons. The complexity of the tasks will solely be decided by and will at the discretion of ZealousWeb.
 
 = Features of Accept Authorize.NET Payments Using Contact Form 7 =
 
@@ -41,17 +41,15 @@ The Add-on provides you the option to make payment only once. There is no recurr
 
 == OUR OTHER PLUGINS ==
 
-* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-paypal-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-stripe-payments-using-contact-form-7/)</strong>
-* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
-* <strong>[Accept Worldpay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-worldpay-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-elavon-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Qpay payments Using Contact form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-qpay-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-2checkout-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-sagepay-payments-using-contact-form-7-pro/)</strong>
-* <strong>[User Registration Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/user-registration-using-contact-form-7-pro/)</strong>
-* <strong>[Abandoned Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/abandoned-contact-form-7-pro/)</strong>
-* <strong>[Custom Product Options WooCommerce Pro](https://www.zealousweb.com/wordpress-plugins/custom-product-options-woocommerce-pro/)</strong>
+* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-paypal-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-stripe-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-elavon-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-2checkout-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept SagePay(opayo) Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-sage-pay-payments-using-contact-form-7-pro)</strong>
+* <strong>[User Registration Using Contact Form 7 Pro](https://www.zealousweb.com/store/user-registration-using-contact-form-7-pro)</strong>
+* <strong>[Abandoned Contact Form 7 Pro](https://www.zealousweb.com/store/abandoned-contact-form-7-pro/)</strong>
+* <strong>[Custom Product Options WooCommerce Pro](https://www.zealousweb.com/store/custom-product-options-woocommerce-pro)</strong>
 
 = Getting Help With Wordpress =
 
