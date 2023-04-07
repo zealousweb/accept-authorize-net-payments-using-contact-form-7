@@ -584,7 +584,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			}
 			echo '</select>';
 
-			echo '<input type="submit" id="doaction2" name="export_csv" class="button action" value="Export CSV">';
+			echo '<input type="submit" id="export_csv" name="export_csv" class="button action" value="Export CSV">';
 
 		}
 

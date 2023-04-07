@@ -92,7 +92,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 		 */
 		function action__init() {
 			if ( !isset( $_SESSION ) || session_status() == PHP_SESSION_NONE ) {
-				session_start();
+				session_start(['read_and_close' => true]);
 			}
 		}
 
@@ -198,7 +198,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 				$customer_details        = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'customer_details', true );
 
 				$email = ( ( !empty( $email ) && array_key_exists( $email, $posted_data ) ) ? $posted_data[$email] : '' );
-				$description = ( ( !empty( $description ) && array_key_exists( $description, $posted_data ) ) ? floatval( $posted_data[$description] ) : get_bloginfo( 'name' ) );
+				$description = ( ( !empty( $description ) && array_key_exists( $description, $posted_data ) ) ? $posted_data[$description] : get_bloginfo( 'name' ) );
 
 				$amount_val  = ( ( !empty( $amount ) && array_key_exists( $amount, $posted_data ) ) ? floatval( $posted_data[$amount] ) : '0' );
 				$quanity_val = ( ( !empty( $quantity ) && array_key_exists( $quantity, $posted_data ) ) ? floatval( $posted_data[$quantity] ) : '' );
@@ -333,14 +333,24 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 						!empty( $city )
 						and $city_data = ( ( !empty( $city ) && array_key_exists( $city, $posted_data ) ) ? $posted_data[$city] : '' )
 					) {
-						$customerAddress->setCity( $city_data );
+						if(gettype($city_data)){
+							$customerAddress->setCountry( $city_data['0'] );
+							
+						}else{
+							$customerAddress->setCountry( $city_data );
+						}
 					}
 
 					if (
 						!empty( $state )
 						and $state_data = ( ( !empty( $state ) && array_key_exists( $state, $posted_data ) ) ? $posted_data[$state] : '' )
 					) {
-						$customerAddress->setState( $state_data );
+						if(gettype($state_data)){
+							$customerAddress->setState( $state_data['0'] );
+							
+						}else{
+							$customerAddress->setState( $state_data );
+						}
 					}
 
 					if (
@@ -354,7 +364,12 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 						!empty( $country )
 						and $country_data = ( ( !empty( $country ) && array_key_exists( $country, $posted_data ) ) ? $posted_data[$country] : '' )
 					) {
-						$customerAddress->setCountry( $country_data );
+						if(gettype($country_data)){
+							$customerAddress->setCountry( $country_data['0'] );
+							
+						}else{
+							$customerAddress->setCountry( $country_data );
+						}
 					}
 
 				}

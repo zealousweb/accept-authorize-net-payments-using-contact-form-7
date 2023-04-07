@@ -4,11 +4,11 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, CF7 Authorize.Net, contact form, contact form 7, Contact Form 7 + PayPal, Contact Form 7 + Authorize.Net, contact form 7 sagepay, contact form 7 to paypal redirect, contact forms, Contact Forms 7, contacted, contactform7, contacts, donation on WordPress site, form, forms, integrate paypal button, integrate paypal with contact form 7, integrate Authorize.Net with contact form 7, integrate Authorize.Net, online payment, pay online, payment using credit card, payments on WordPress site, paypal button, Authorize.Net donation, Authorize.Net Payment Gateway, Authorize.Net plugin for wordpress, Paypal submit, redirect PayPal, redirect to paypal, Authorize.Net, Authorize.Net, Authorize.Net API, Authorize.Net checkout, Authorize.Net donation, Authorize.Net integration in Contact Form 7, Authorize.Net payment, Authorize.Net payment gateway, Authorize.Net plugin for wordpress, super Authorize.Net, wp Authorize.Net
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.0
+Tested up to: 6.0.2
 License: GPLv3 or later License
 CF7 requires at least: 5.0
-CF7 tested up to: 5.4
-Version: 1.3
+CF7 tested up to: 5.7.5.1
+Version: 1.7
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Contact Form 7 - Integrate Authorize.Net payment gateway for making your payments through Contact Form 7. 
@@ -45,8 +45,7 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-stripe-payments-using-contact-form-7/)</strong>
 * <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
 * <strong>[Accept Worldpay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-worldpay-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-elavon-payments-using-contact-form-7-pro/)</strong>
-* <strong>[Accept Qpay payments Using Contact form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-qpay-payments-using-contact-form-7-pro/)</strong>
+* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://www.zealousweb.com/store/accept-elavon-payments-using-contact-form-7-pro/)</strong>
 * <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-2checkout-payments-using-contact-form-7-pro/)</strong>
 * <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/accept-sagepay-payments-using-contact-form-7-pro/)</strong>
 * <strong>[User Registration Using Contact Form 7 Pro](https://www.zealousweb.com/wordpress-plugins/user-registration-using-contact-form-7-pro/)</strong>
@@ -84,6 +83,19 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 1.7 =
+* Supports dropdown for Country,City,State in authorize setting.
+* Fixed Export CSV feature. Now you can now export "All" transactions as csv.
+
+= 1.6 =
+* Solved Description Field value not Pass into Payment Gateway order Details.
+
+= 1.5 =
+* Update Authorize.Net Session code and solved An active PHP session issue was detected.
+
+= 1.4 =
+* Update Authorize.Net Library
 
 = 1.3 =
 * Tested with latest WordPress and Contact form 7.
