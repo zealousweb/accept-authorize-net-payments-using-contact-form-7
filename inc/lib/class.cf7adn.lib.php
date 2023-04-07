@@ -333,7 +333,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 						!empty( $city )
 						and $city_data = ( ( !empty( $city ) && array_key_exists( $city, $posted_data ) ) ? $posted_data[$city] : '' )
 					) {
-						if(gettype($city_data)){
+						if(is_array($city_data)){
 							$customerAddress->setCountry( $city_data['0'] );
 							
 						}else{
@@ -976,12 +976,11 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 					if ( $v['name'] == $tag->name ) {
 						if ( $found <= 1 ) {
 
-							echo '<button type="button" class="form-button action-button cf7adn_next" name="cf7ade_form">' . wp_kses_post( $value ) . '</button>' .
-							'</fieldset>' .
+							echo '</fieldset>' .
 							'<fieldset class="fieldset-cf7adn">' .
 								'<div class="cf7adn-form-code">' .
 									sprintf(
-										'<span class="credit_card_details wpcf7-form-control-wrap %1$s">%2$s%3$s</span>',
+										'<span class="credit_card_details wpcf7-form-control-wrap %1$s" data-name="%1$s">%2$s%3$s</span>',
 										sanitize_html_class( $tag->name ),
 										'<h4>'.__( "Your Credit Card Detail", "contact-form-7-authorize-net-addon" ).':</h4>
 										<p>
