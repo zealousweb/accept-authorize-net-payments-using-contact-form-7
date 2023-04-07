@@ -62,6 +62,8 @@ Our professional impassioned Wordpress experts provide profound and customer ori
 
 Thank you for choosing a Plugin developed by <strong>[ZealousWeb](https://www.zealousweb.com)</strong>!
 
+Here our <strong>[GitLink](https://github.com/zealousweb/accept-authorize-net-payments-using-contact-form-7)</strong>.
+
 == Installation ==
 
 Installing the plugin is easy. Just follow these steps:
