@@ -334,10 +334,10 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 						and $city_data = ( ( !empty( $city ) && array_key_exists( $city, $posted_data ) ) ? $posted_data[$city] : '' )
 					) {
 						if(is_array($city_data)){
-							$customerAddress->setCountry( $city_data['0'] );
+							$customerAddress->setCity( $city_data['0'] );
 							
 						}else{
-							$customerAddress->setCountry( $city_data );
+							$customerAddress->setCity( $city_data );
 						}
 					}
 
