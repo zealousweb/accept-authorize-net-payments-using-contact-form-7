@@ -238,21 +238,22 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			if( array_key_exists('cfadnimport-plugin-submit', $_REQUEST ) && sanitize_text_field($_REQUEST['cfadnimport-plugin-submit']) != '' ) {
 				$error = array();
 				// checking the nonce first
-				if( sanitize_text_field($_REQUEST['_wpnonce_cfadn']) != '' && isset( $_REQUEST['_wpnonce_cfadn'] ) ) {
+				if (isset($_REQUEST['_wpnonce_cfadn']) && sanitize_text_field($_REQUEST['_wpnonce_cfadn']) != '') {
 					if( ! wp_verify_nonce( sanitize_text_field($_REQUEST['_wpnonce_cfadn']), 'cfadn_import' ) ){
 						add_action( 'admin_notices', array( $this, 'action__admin_notices_import_nonce_issue' ) );
 						return;
 					}
 				}
 
-				//checking filet type of uploaded file
-				if( $_FILES['cfadn_importcsv']['type'] != '' ) {
-					$fileName       = $_FILES['cfadn_importcsv']['name'];
-					$fileArray      = explode ( '.', $fileName );
-					$fileExtension  = end ( $fileArray );
-					$ext            = strtolower( $fileExtension );
-					$type           = $_FILES['cfadn_importcsv']['type'];
-					$tmpName        = $_FILES['cfadn_importcsv']['tmp_name'];
+				if (isset($_FILES['cfadn_importcsv']['type']) && !empty($_FILES['cfadn_importcsv']['type']) &&
+					isset($_FILES['cfadn_importcsv']['name']) && !empty($_FILES['cfadn_importcsv']['name']) &&
+					isset($_FILES['cfadn_importcsv']['tmp_name']) && !empty($_FILES['cfadn_importcsv']['tmp_name'])) {
+					$fileName = $_FILES['cfadn_importcsv']['name']; 
+					$fileArray = explode('.', $fileName);
+					$fileExtension = end($fileArray);
+					$ext = strtolower($fileExtension);
+					$type = $_FILES['cfadn_importcsv']['type']; 
+					$tmpName = $_FILES['cfadn_importcsv']['tmp_name']; 
 
 					// check the file is a csv
 					if( $ext === 'csv' ){
@@ -277,10 +278,11 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 									} else {
 										if( $flag === true ) {
 
-                                            $form_name = 'Imported Data Form';
-                                            if( sanitize_text_field($_REQUEST['formname']) != '' ){
-                                                $form_name = sanitize_text_field($_REQUEST['formname']);
-                                            }
+                                            $form_name = 'Imported Data Form';                                         
+											if (isset($_REQUEST['formname']) && !empty($_REQUEST['formname'])) {
+												$form_name = sanitize_text_field($_REQUEST['formname']);
+											
+											}	
 											$sa_import_contactform_id = wp_insert_post( array (
 												'post_type' => 'wpcf7_contact_form',
 												'post_title' => $form_name, // email/invoice_no
@@ -383,8 +385,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 * - Add mes boxes for the CPT "cf7adn_data"
 		 */
 		function action__add_meta_boxes() {
-			add_meta_box( 'cfadn-data', __( 'From Data', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_from_data' ), 'cf7adn_data', 'normal', 'high' );
-			add_meta_box( 'cfadn-help', __( 'Do you need help for configuration?', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_help_data' ), 'cf7adn_data', 'side', 'high' );
+			add_meta_box( 'cfadn-data', esc_html__( 'From Data', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_from_data' ), 'cf7adn_data', 'normal', 'high' );
+			add_meta_box( 'cfadn-help', esc_html__( 'Do you need help for configuration?', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_help_data' ), 'cf7adn_data', 'side', 'high' );
 		}
 
 		/**
@@ -443,10 +445,12 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 			if ( !empty( $form_fields ) ) {
 				foreach ( $form_fields as $key ) {
-					$keyval = sanitize_text_field( $_REQUEST[ $key ] );
+					if (isset($_REQUEST[$key])) { 
+					$keyval = sanitize_text_field( $_REQUEST[ $key ] ); 
 					update_post_meta( $post_id, $key, $keyval );
+					}
 				}
-			}
+			}		
 
 		}
 
@@ -466,14 +470,14 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 				case 'form_id' :
 					if( $data_ct ){
-						echo "<a href='".CFADZW_PRODUCT."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+						echo "<a href='" . esc_url( CFADZW_PRODUCT ) . "' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
 					}else{
 						echo (
 							!empty( get_post_meta( $post_id , '_form_id', true ) )
 							? (
 								!empty( get_the_title( get_post_meta( $post_id , '_form_id', true ) ) )
-								? get_the_title( get_post_meta( $post_id , '_form_id', true ) )
-								: get_post_meta( $post_id , '_form_id', true )
+								?esc_html__(get_the_title( get_post_meta( $post_id , '_form_id', true ) ))
+								:esc_html__(get_post_meta( $post_id , '_form_id', true ))
 							)
 							: ''
 						);
@@ -482,7 +486,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 				case 'transaction_status' :
 					if( $data_ct ){
-						echo "<a href='".CFADZW_PRODUCT."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+						echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
 					}else{
 						echo (
 							!empty( get_post_meta( $post_id , '_transaction_status', true ) )
@@ -491,8 +495,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 									!empty( CF7ADN()->lib->response_status )
 									&& array_key_exists( get_post_meta( $post_id , '_transaction_status', true ), CF7ADN()->lib->response_status)
 								)
-								? CF7ADN()->lib->response_status[get_post_meta( $post_id , '_transaction_status', true )]
-								: get_post_meta( $post_id , '_transaction_status', true )
+								? esc_html__(CF7ADN()->lib->response_status[get_post_meta( $post_id , '_transaction_status', true )])
+								:esc_html__(get_post_meta( $post_id , '_transaction_status', true ))
 							)
 							: ''
 						);
@@ -501,10 +505,10 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 				case 'total' :
 					if( $data_ct ){
-						echo "<a href='".CFADZW_PRODUCT."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+						echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
 					}else{
-						echo ( !empty( get_post_meta( $post_id , '_total', true ) ) ? get_post_meta( $post_id , '_total', true ) : '' ) .' ' .
-						( !empty( get_post_meta( $post_id , '_currency', true ) ) ? get_post_meta( $post_id , '_currency', true ) : '' );
+						echo ( !empty( get_post_meta( $post_id , '_total', true ) ) ? esc_html__(get_post_meta( $post_id , '_total', true )) : '' ) .' ' .
+						( !empty( get_post_meta( $post_id , '_currency', true ) ) ? esc_html__(get_post_meta( $post_id , '_currency', true )) : '' );
 					}
 				break;
 
@@ -578,9 +582,10 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			$selected = ( isset( $_GET['form-id'] ) ? sanitize_text_field($_GET['form-id']) : '' );
 
 			echo '<select name="form-id" id="form-id">';
-			echo '<option value="all">' . __( 'Select Form', 'contact-form-7-authorize-net-addon' ) . '</option>';
+			echo '<option value="all">' . esc_html__( 'Select Form', 'contact-form-7-authorize-net-addon' ) . '</option>';
 			foreach ( $posts as $post ) {
-				echo '<option value="' . $post->ID . '" ' . selected( $selected, $post->ID, false ) . '>' . $post->post_title  . '</option>';
+				echo '<option value="' . esc_attr( $post->ID ) . '" ' . selected( $selected, $post->ID, false ) . '>' . esc_html__( $post->post_title ) . '</option>';
+
 			}
 			echo '</select>';
 
@@ -626,7 +631,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		function action__admin_notices_export() {
 			echo '<div class="error">' .
 				'<p>' .
-					__( 'Please select Form to export.', 'contact-form-7-authorize-net-addon' ) .
+				esc_html__( 'Please select Form to export.', 'contact-form-7-authorize-net-addon' ) .
 				'</p>' .
 			'</div>';
 		}
@@ -639,18 +644,17 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 * @method action__acf7adn_postbox
 		 */
 		function action__acf7adn_postbox() {
-
 			echo '<div id="configuration-help" class="postbox">' .
-				apply_filters(
+			apply_filters(
 					CF7ADN_PREFIX . '/help/postbox',
-					'<h3>' . __( 'Do you need help for configuration?', CF7ADN_PREFIX ) . '</h3>' .
+					'<h3>' . esc_html__( 'Do you need help for configuration?', CF7ADN_PREFIX ) . '</h3>' .
 					'<p></p>' .
 					'<ol>' .
 						'<li><a href="https://www.zealousweb.com/wordpress-plugins/product/accept-authorize-net-payments-using-contact-form-7/" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
 						'<li><a href="mailto:opensource@zealousweb.com">Email us</a></li>' .
 					'</ol>'
-				) .
+				).
 			'</div>';
 		}
 
@@ -710,7 +714,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 								echo '<tr class="form-field">' .
 									'<th scope="row">' .
-										'<label for="hcf_author">' . __( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
+										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
 									'</th>' .
 									'<td>' .
 										(
@@ -718,8 +722,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 												'_form_id' == $key
 												&& !empty( get_the_title( get_post_meta( $post->ID, $key, true ) ) )
 											)
-											? get_the_title( get_post_meta( $post->ID, $key, true ) )
-											: get_post_meta( $post->ID, $key, true )
+											? esc_html__(get_the_title( get_post_meta( $post->ID, $key, true ) ))
+											: esc_html__(get_post_meta( $post->ID, $key, true ))
 										) .
 									'</td>' .
 								'</tr>';
@@ -731,7 +735,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 								echo '<tr class="form-field">' .
 									'<th scope="row">' .
-										'<label for="hcf_author">' . __( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
+										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
 									'</th>' .
 									'<td>' .
 										(
@@ -739,8 +743,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 												!empty( CF7ADN()->lib->response_status )
 												&& array_key_exists( get_post_meta( $post->ID , $key, true ), CF7ADN()->lib->response_status )
 											)
-											? CF7ADN()->lib->response_status[get_post_meta( $post->ID , $key, true )]
-											: get_post_meta( $post->ID , $key, true )
+											? esc_html__(CF7ADN()->lib->response_status[get_post_meta( $post->ID , $key, true )] )
+											: esc_html__(get_post_meta( $post->ID , $key, true ))
 										) .
 									'</td>' .
 								'</tr>';
@@ -752,7 +756,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 								echo '<tr class="form-field">' .
 									'<th scope="row">' .
-										'<label for="hcf_author">' . __( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
+										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
 									'</th>' .
 									'<td>' .
 										'<table>';
@@ -770,7 +774,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 													if ( strpos( $key, 'authorize-' ) === false ) {
 														echo '<tr class="inside-field">' .
 															'<th scope="row">' .
-																__( sprintf( '%s', $key ), 'contact-form-7-authorize-net-addon' ) .
+															esc_html__( sprintf( '%s', $key ), 'contact-form-7-authorize-net-addon' ) .
 															'</th>' .
 															'<td>' .
 																(
@@ -778,8 +782,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 																		!empty( $attachment )
 																		&& array_key_exists( $key, $attachment )
 																	)
-																	? '<a href="' . esc_url( home_url( str_replace( $root_path, '/', $attachment[$key] ) ) ) . '" target="_blank" download>' . __( substr($attachment[$key], strrpos($attachment[$key], '/') + 1), 'contact-form-7-authorize-net-addon' ) . '</a>'
-																	: __( sprintf( '%s', ( is_array($value) ? implode( ', ', $value ) :  $value ) ), 'contact-form-7-authorize-net-addon' )
+																	? '<a href="' . esc_url( home_url( str_replace( $root_path, '/', $attachment[$key] ) ) ) . '" target="_blank" download>' . esc_html( substr($attachment[$key], strrpos($attachment[$key], '/') + 1), 'contact-form-7-authorize-net-addon' ) . '</a>'
+																	: esc_html__( sprintf( '%s', ( is_array($value) ? implode( ', ', $value ) :  $value ) ), 'contact-form-7-authorize-net-addon' )
 																) .
 															'</td>' .
 														'</tr>';
@@ -798,12 +802,12 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 								echo '<tr class="form-field">' .
 									'<th scope="row">' .
-										'<label for="hcf_author">' . __( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
+										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
 									'</th>' .
 									'<td>' .
 										'<code style="word-break: break-all;">' .
 											(
-												get_post_meta( $post->ID , $key, true )
+												esc_html__(get_post_meta( $post->ID , $key, true ))
 											) .
 										'</code>' .
 									'</td>' .
@@ -837,14 +841,14 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 */
 		function cfadn_show_help_data() {
 			echo '<div id="cf7adn-data-help">' .
-				apply_filters(
+			esc_html__(apply_filters(
 					CF7ADN_PREFIX . '/help/cf7adn_data/postbox',
 					'<ol>' .
 						'<li><a href="https://www.zealousweb.com/wordpress-plugins/product/accept-authorize-net-payments-using-contact-form-7/" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
 						'<li><a href="mailto:opensource@zealousweb.in">Email us</a></li>' .
 					'</ol>'
-				) .
+				) ).
 			'</div>';
 		}
 
@@ -854,14 +858,14 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 */
 		function cfadn_import_submenu_page_callback() {
 			echo '<div class="wrap cfadn_wrap_import show-upload-view">';
-				echo '<h1 class ="wp-heading-inline">'. __( 'Import your CSV.', 'contact-form-7-stripe-addon' ) .'</h1>';
+				echo '<h1 class ="wp-heading-inline">'. esc_html__( 'Import your CSV.', 'contact-form-7-stripe-addon' ) .'</h1>';
 				echo '<div class="upload-plugin">
-						<p class ="install-help">'. __( 'Check demo CSV ', 'contact-form-7-stripe-addon' ) .'<a download href="'.CF7ADN_URL.'import-example/cf7adn-16-1588577363.csv">'. __( 'here..', 'contact-form-7-stripe-addon' ) .'</a></p>
+						<p class ="install-help">'. esc_html__( 'Check demo CSV ', 'contact-form-7-stripe-addon' ) .'<a download href="'.esc_url(CF7ADN_URL).'import-example/cf7adn-16-1588577363.csv">'. esc_html__( 'here..', 'contact-form-7-stripe-addon' ) .'</a></p>
 						<form method="post" enctype="multipart/form-data" class="wp-upload-form" style="max-width:780px;">
-							<label style="margin-right:6px;">'.__( 'Enter New Form Name','contact-form-7-stripe-addon' ).'
+							<label style="margin-right:6px;">'.esc_html__( 'Enter New Form Name','contact-form-7-stripe-addon' ).'
 							<input type="text" placeholder="Enter New Form Name" name="formname" /></label>
-							<label>'. __( 'Upload File','contact-form-7-stripe-addon' ) .'
-							<input type="hidden" id="_wpnonce" name="_wpnonce_cfadn" value="'. wp_create_nonce( 'cfadn_import' ) .'">
+							<label>'. esc_html__( 'Upload File','contact-form-7-stripe-addon' ) .'
+							<input type="hidden" id="_wpnonce" name="_wpnonce_cfadn" value="'. esc_attr(wp_create_nonce( 'cfadn_import' )) .'">
 							<input type="file" id="pluginzip" name="cfadn_importcsv"></label>
 							<label><input type="submit" name="cfadnimport-plugin-submit" id="install-plugin-submit" class="button" value="Import Now" disabled=""></label>
 						</form>
@@ -876,7 +880,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div class="updated">' .
 				sprintf(
 					/* translators: Contact Form 7 - Stripe Add-on */
-					__( '<p>Import is done successfully.</p>', 'contact-form-7-stripe-addon' ),
+					esc_html__( '<p>Import is done successfully.</p>', 'contact-form-7-stripe-addon' ),
 					'Contact Form 7 - Stripe Add-on'
 				) .
 			'</div>';
@@ -889,7 +893,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div class="error">' .
 				sprintf(
 					/* translators: Contact Form 7 - Stripe Add-on */
-					__( '<p>Nonce issue.. Please try again.</p>', 'contact-form-7-stripe-addon' ),
+					esc_html__( '<p>Nonce issue.. Please try again.</p>', 'contact-form-7-stripe-addon' ),
 					'Contact Form 7 - Stripe Add-on'
 				) .
 			'</div>';
@@ -902,7 +906,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div class="error">' .
 				sprintf(
 					/* translators: Contact Form 7 - Stripe Add-on */
-					__( '<p>File Format is not suported.</p>', 'contact-form-7-stripe-addon' ),
+					esc_html__( '<p>File Format is not suported.</p>', 'contact-form-7-stripe-addon' ),
 					'Contact Form 7 - Stripe Add-on'
 				) .
 			'</div>';
@@ -915,7 +919,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div class="error">' .
 				sprintf(
 					/* translators: Contact Form 7 - Stripe Add-on */
-					__( '<p>File type is not correct. Please upload CSV.</p>', 'contact-form-7-stripe-addon' ),
+					esc_html__( '<p>File type is not correct. Please upload CSV.</p>', 'contact-form-7-stripe-addon' ),
 					'Contact Form 7 - Stripe Add-on'
 				) .
 			'</div>';
@@ -928,7 +932,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div class="error">' .
 				sprintf(
 					/* translators: Contact Form 7 - Stripe Add-on */
-					__( '<p>Import is failed contact plugin author.</p>', 'contact-form-7-stripe-addon' ),
+					esc_html__( '<p>Import is failed contact plugin author.</p>', 'contact-form-7-stripe-addon' ),
 					'Contact Form 7 - Stripe Add-on'
 				) .
 			'</div>';

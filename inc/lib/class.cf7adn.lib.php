@@ -231,7 +231,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 				if ( empty( $amount_val ) ) {
 					add_filter( 'wpcf7_skip_mail', array( $this, 'filter__wpcf7_skip_mail' ), 20 );
-					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = __( 'Empty Amount field or Invalid configuration.', 'contact-form-7-authorize-net-addon' );
+					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = esc_html__( 'Empty Amount field or Invalid configuration.', 'contact-form-7-authorize-net-addon' );
 					return;
 				}
 
@@ -334,10 +334,10 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 						and $city_data = ( ( !empty( $city ) && array_key_exists( $city, $posted_data ) ) ? $posted_data[$city] : '' )
 					) {
 						if(is_array($city_data)){
-							$customerAddress->setCountry( $city_data['0'] );
+							$customerAddress->setCity( $city_data['0'] );
 							
 						}else{
-							$customerAddress->setCountry( $city_data );
+							$customerAddress->setCity( $city_data );
 						}
 					}
 
