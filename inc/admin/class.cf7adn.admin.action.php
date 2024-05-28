@@ -445,10 +445,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 			if ( !empty( $form_fields ) ) {
 				foreach ( $form_fields as $key ) {
-					if (isset($_REQUEST[$key])) { 
 					$keyval = sanitize_text_field( $_REQUEST[ $key ] ); 
 					update_post_meta( $post_id, $key, $keyval );
-					}
 				}
 			}		
 
