@@ -150,8 +150,9 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 											(
 												!empty( CF7ADN()->lib->response_status )
 												&& array_key_exists( get_post_meta( $entry->ID , $key, true ), CF7ADN()->lib->response_status )
+												&& (get_post_meta($entry->ID, '_transaction_status', true) === '1')
 											)
-											? CF7ADN()->lib->response_status[get_post_meta( $entry->ID , $key, true )]
+											? esc_html__('Succeeded')
 											: get_post_meta( $entry->ID , $key, true )
 										)
 									);
@@ -487,17 +488,23 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 						echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
 					}else{
 						echo (
-							!empty( get_post_meta( $post_id , '_transaction_status', true ) )
-							? (
+							!empty(get_post_meta($post_id, '_transaction_status', true)) ?
+							(
+								(get_post_meta($post_id, '_transaction_status', true) === '1') ?
+									esc_html__('Succeeded') :
+									''
+							) :
+							(
 								(
-									!empty( CF7ADN()->lib->response_status )
-									&& array_key_exists( get_post_meta( $post_id , '_transaction_status', true ), CF7ADN()->lib->response_status)
-								)
-								? esc_html__(CF7ADN()->lib->response_status[get_post_meta( $post_id , '_transaction_status', true )])
-								:esc_html__(get_post_meta( $post_id , '_transaction_status', true ))
+									!empty(CF7ADN()->lib->response_status)
+									&& array_key_exists(get_post_meta($post_id, '_transaction_status', true), CF7ADN()->lib->response_status)
+								) ?
+									esc_html__(CF7ADN()->lib->response_status[get_post_meta($post_id, '_transaction_status', true)]) :
+									esc_html__(get_post_meta($post_id, '_transaction_status', true))
 							)
-							: ''
 						);
+						
+						
 					}
 				break;
 
@@ -643,16 +650,16 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 */
 		function action__acf7adn_postbox() {
 			echo '<div id="configuration-help" class="postbox">' .
-			apply_filters(
+			wp_kses_post(apply_filters(
 					CF7ADN_PREFIX . '/help/postbox',
-					'<h3>' . esc_html__( 'Do you need help for configuration?', CF7ADN_PREFIX ) . '</h3>' .
+					'<h3>' . __( 'Do you need help for configuration?', CF7ADN_PREFIX ) . '</h3>' .
 					'<p></p>' .
 					'<ol>' .
-						'<li><a href="https://www.zealousweb.com/wordpress-plugins/product/accept-authorize-net-payments-using-contact-form-7/" target="_blank">Refer the document.</a></li>' .
+						'<li><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
 						'<li><a href="mailto:opensource@zealousweb.com">Email us</a></li>' .
 					'</ol>'
-				).
+				)).
 			'</div>';
 		}
 
@@ -689,7 +696,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 					if( $data_ct ){
 						echo'<tr class="inside-field"><th scope="row">You are using Free Accept Qpay payments Using Contact form 7 - no license needed. Enjoy! 🙂</th></tr>';
-							echo'<tr class="inside-field"><th scope="row"><a href="https://www.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/" target="_blank">To unlock more features consider upgrading to PRO.</a></th></tr>';
+							echo'<tr class="inside-field"><th scope="row"><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro" target="_blank">To unlock more features consider upgrading to PRO.</a></th></tr>';
 					}else{
 
 						if ( array_key_exists( '_transaction_response', $fields ) && empty( get_post_meta( $form_id, CF7ADN_META_PREFIX . 'debug', true ) ) ) {
@@ -738,12 +745,14 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 									'<td>' .
 										(
 											(
-												!empty( CF7ADN()->lib->response_status )
-												&& array_key_exists( get_post_meta( $post->ID , $key, true ), CF7ADN()->lib->response_status )
+												!empty(CF7ADN()->lib->response_status)
+												&& array_key_exists(get_post_meta($post->ID, $key, true), CF7ADN()->lib->response_status)
+												&& get_post_meta($post->ID, '_transaction_status', true) === '1'
 											)
-											? esc_html__(CF7ADN()->lib->response_status[get_post_meta( $post->ID , $key, true )] )
-											: esc_html__(get_post_meta( $post->ID , $key, true ))
+											? esc_html__('Succeeded')
+											: esc_html__(get_post_meta($post->ID, $key, true))
 										) .
+										
 									'</td>' .
 								'</tr>';
 
@@ -839,10 +848,10 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 */
 		function cfadn_show_help_data() {
 			echo '<div id="cf7adn-data-help">' .
-			esc_html__(apply_filters(
+			wp_kses_post(apply_filters(
 					CF7ADN_PREFIX . '/help/cf7adn_data/postbox',
 					'<ol>' .
-						'<li><a href="https://www.zealousweb.com/wordpress-plugins/product/accept-authorize-net-payments-using-contact-form-7/" target="_blank">Refer the document.</a></li>' .
+						'<li><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
 						'<li><a href="mailto:opensource@zealousweb.in">Email us</a></li>' .
 					'</ol>'
