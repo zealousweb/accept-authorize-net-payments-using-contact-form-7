@@ -8,7 +8,7 @@ Tested up to: 6.2.0
 License: GPLv3 or later License
 CF7 requires at least: 5.0
 CF7 tested up to: 5.7.5.1
-Version: 1.8
+Version: 2.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Contact Form 7 - Integrate Authorize.Net payment gateway for making your payments through Contact Form 7. 
@@ -85,6 +85,12 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.0 =
+* Improved compatibility with WordPress VIP platform by refactoring code to adhere to VIP coding standards.
+
+= 1.9 =
+* Bug fixing : Country and city data
 
 = 1.8 =
 * Solved validation issue for credit card section
