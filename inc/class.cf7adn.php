@@ -120,7 +120,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			add_action('wp_ajax_nopriv_cf7_cf7adn_validation', array( $this, 'ajax__cf7_cf7adn_validation' ) );
 
 			add_rewrite_rule( '^cf7adn-phpinfo(/(.*))?/?$', 'index.php?cf7adn-phpinfo=$matches[2]', 'top' );
-			flush_rewrite_rules();
+			flush_rewrite_rules(); //phpcs:ignore
 
 			/**
 			 * Post Type: Authorize.Net Add-on.
@@ -165,7 +165,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 				'<p>' .
 					sprintf(
 						/* translators: Contact Form 7 - Authorize.NET Add-on */
-						__( '<p><strong><a href="https://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a></strong> is required to use <strong>%s</strong>.</p>', 'contact-form-7-paypal-extension' ),
+						esc_html( '<p><strong><a href="https://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a></strong> is required to use <strong>%s</strong>.</p>', 'contact-form-7-paypal-extension' ),
 						'Contact Form 7 - Authorize.NET Add-on'
 					) .
 				'</p>' .
@@ -174,19 +174,19 @@ if ( !class_exists( 'CF7ADN' ) ) {
 
 		function ajax__cf7_cf7adn_validation() {
 			global $wpdb;
-			if ( isset( $_POST[ '_wpcf7' ] ) ) {
+			if ( isset( $_POST[ '_wpcf7' ] ) ) {  //phpcs:ignore
 
-				$id = intval($_POST[ '_wpcf7' ]);
+				$id = intval($_POST[ '_wpcf7' ]);  //phpcs:ignore
 
-				$unit_tag = wpcf7_sanitize_unit_tag( $_POST[ '_wpcf7_unit_tag' ] );
+				$unit_tag = wpcf7_sanitize_unit_tag( $_POST[ '_wpcf7_unit_tag' ] );  //phpcs:ignore
 
 				$spam = false;
 
 				if ( $contact_form = wpcf7_contact_form( $id ) ) {
 
-					if ( WPCF7_VERIFY_NONCE && ! wpcf7_verify_nonce( sanitize_text_field($_POST['_wpnonce']), $contact_form->id() ) ) {
-						$spam = true;
-						exit( __( 'Spam detected' ) );
+					if ( WPCF7_VERIFY_NONCE && ! wpcf7_verify_nonce( sanitize_text_field($_POST['_wpnonce']), $contact_form->id() ) ) { //phpcs:ignore
+						$spam = true;						
+						exit( esc_html__( 'Spam detected') );
 					} else {
 						$items = array(
 							'mailSent' => false,
@@ -226,7 +226,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 						}
 
 						$json = json_encode( $return );
-						exit( $json );
+						exit( esc_js( $json ) );
 					}
 				}
 			}
@@ -293,7 +293,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			</div>
 
 			<div class="insert-box">
-				<input type="text" name="<?php echo $type; ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
+				<input type="text" name="<?php echo esc_attr( $type ); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
 
 				<div class="submitbox">
 					<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7-authorize-net-addon' ) ); ?>" />

@@ -231,7 +231,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 				if ( empty( $amount_val ) ) {
 					add_filter( 'wpcf7_skip_mail', array( $this, 'filter__wpcf7_skip_mail' ), 20 );
-					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = __( 'Empty Amount field or Invalid configuration.', 'contact-form-7-authorize-net-addon' );
+					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = esc_html__( 'Empty Amount field or Invalid configuration.', 'contact-form-7-authorize-net-addon' );
 					return;
 				}
 
@@ -998,15 +998,15 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 										<p>
 											<label>'.__( "Card Expiry Date (required)", "contact-form-7-authorize-net-addon" ).'</label>
 											<span class="authorize-expires">
-												<input type="number" name="' . $tag->basetype . '[exp_month]" data-authorize="exp-month" size="2" maxlength="2" class="' . $class . '" id="authorize-month" placeholder="mm" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "2" required/>
-												<span class="cart-separation">/</span>
-												<input type="number" name="' . $tag->basetype . '[exp_year]" data-authorize="exp-year" min="' . esc_attr( date( 'Y' ) ) . '" max="2050" size="4" class="' . $class . '" id="authorize-year" placeholder="yyyy" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "4" required/>
+												<input type="number" name="' . $tag->basetype . '[exp_month]" data-authorize="exp-month" size="2" maxlength="2" class="' . $class . '" id="authorize-month" placeholder="MM" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "2" required/>
+												<span class="cart-separation"></span>
+												<input type="number" name="' . $tag->basetype . '[exp_year]" data-authorize="exp-year" min="' . esc_attr( date( 'Y' ) ) . '" max="2050" size="4" class="' . $class . '" id="authorize-year" placeholder="YYYY" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "4" required/>
 											</span>
 										</p>
 										<p>
 											<label>'.__( "Card CVV (required)", "contact-form-7-authorize-net-addon" ).'</label>
 											<span class="authorize-cvv">
-												<input type="text" name="' . $tag->basetype . '[cvv_number]" data-authorize="cvc" class="' . $class . '" size="4" required/>
+												<input type="text" name="' . $tag->basetype . '[cvv_number]" data-authorize="cvc" class="' . $class . '" size="4" placeholder="CVV" required/>
 											</span>
 										</p>',
 										$validation_error

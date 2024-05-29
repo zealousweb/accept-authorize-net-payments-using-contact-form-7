@@ -1,14 +1,14 @@
 <?php
 
-$post_id = ( isset( $_REQUEST[ 'post' ] ) ? sanitize_text_field( $_REQUEST[ 'post' ] ) : '' );
+$new_post_id = ( isset( $_REQUEST[ 'post' ] ) ? sanitize_text_field( $_REQUEST[ 'post' ] ) : '' );
 
-if ( empty( $post_id ) ) {
+if ( empty( $new_post_id ) ) {
 	$wpcf7 = WPCF7_ContactForm::get_current();
-	$post_id = $wpcf7->id();
+	$new_post_id = $wpcf7->id(); //phpcs:ignore
 }
 /* Scan Form Tags */
-if($post_id!=""){
-	$cf7adn_form = WPCF7_ContactForm::get_instance($post_id);
+if($new_post_id!=""){
+	$cf7adn_form = WPCF7_ContactForm::get_instance($new_post_id);
 	$cf7adntags = $cf7adn_form->collect_mail_tags();
 	if (($key = array_search('paypal-pro', $cf7adntags)) !== false) {
 	    unset($cf7adntags[$key]);
@@ -35,34 +35,34 @@ wp_add_inline_script( 'select2', cf7adn_inlineScript_select2() );
 
 wp_enqueue_style( CF7ADN_PREFIX . '_admin_css' );
 
-$use_authorize           = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'use_authorize', true );
-$mode_sandbox            = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'mode_sandbox', true );
-$debug_authorize         = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'debug', true );
-$sandbox_login_id        = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'sandbox_login_id', true );
-$sandbox_transaction_key = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'sandbox_transaction_key', true );
-$live_login_id           = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'live_login_id', true );
-$live_transaction_key    = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'live_transaction_key', true );
-$amount                  = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'amount', true );
-$quantity                = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'quantity', true );
-$email                   = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'email', true );
-$description             = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'description', true );
+$use_authorize           = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'use_authorize', true );
+$mode_sandbox            = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'mode_sandbox', true );
+$debug_authorize         = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'debug', true );
+$sandbox_login_id        = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'sandbox_login_id', true );
+$sandbox_transaction_key = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'sandbox_transaction_key', true );
+$live_login_id           = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'live_login_id', true );
+$live_transaction_key    = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'live_transaction_key', true );
+$amount                  = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'amount', true );
+$quantity                = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'quantity', true );
+$email                   = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'email', true );
+$description             = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'description', true );
 
-$success_returnURL       = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'success_returnurl', true );
-$cancel_returnURL        = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'cancel_returnurl', true );
-$message                 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'message', true );
+$success_returnURL       = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'success_returnurl', true );
+$cancel_returnURL        = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'cancel_returnurl', true );
+$message                 = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'message', true );
 
-$currency                = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'currency', true );
+$currency                = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'currency', true );
 
-$customer_details        = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'customer_details', true );
+$customer_details        = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'customer_details', true );
 
-$first_name              = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'first_name', true );
-$last_name               = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'last_name', true );
-$company_name            = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'company_name', true );
-$address                 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'address', true );
-$city                    = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'city', true );
-$state                   = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'state', true );
-$zip_code                = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'zip_code', true );
-$country                 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'country', true );
+$first_name              = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'first_name', true );
+$last_name               = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'last_name', true );
+$company_name            = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'company_name', true );
+$address                 = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'address', true );
+$city                    = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'city', true );
+$state                   = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'state', true );
+$zip_code                = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'zip_code', true );
+$country                 = get_post_meta( $new_post_id, CF7ADN_META_PREFIX . 'country', true );
 
 
 $currency_code = array(
@@ -101,109 +101,109 @@ $args = array(
 	'orderby'        => 'title',
 	'posts_per_page' => -1
 );
-$pages = get_posts( $args );
+$new_pages = get_posts( $args ); 
 $all_pages = array();
-if ( !empty( $pages ) ) {
-	foreach ( $pages as $page ) {
-		$all_pages[$page->ID] = $page->post_title;
+if ( !empty( $new_pages ) ) {
+	foreach ( $new_pages as $new ) { 
+		$all_pages[$new->ID] = $new->post_title;
 	}
 }
 
 echo '<div class="cf7adn-settings">' .
 	'<div class="left-box postbox">' .
-		'<input style="display: none;" id="' . CF7ADN_META_PREFIX . 'customer_details" name="' . CF7ADN_META_PREFIX . 'customer_details" type="checkbox" value="1" ' . checked( $customer_details, 1, false ) . ' />' .
+		'<input style="display: none;" id="' . esc_attr(CF7ADN_META_PREFIX) . 'customer_details" name="'. esc_attr(CF7ADN_META_PREFIX) . 'customer_details" type="checkbox" value="1" ' . checked( $customer_details, 1, false ) . ' />' .
 		'<table class="form-table">' .
 			'<tbody>' .
 				'<tr class="form-field">' .
 					'<th scope="row">' .
-						'<label for="' . CF7ADN_META_PREFIX . 'use_authorize">' .
-							__( 'Enable Authorize.Net Payment Form', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'use_authorize">' .
+							esc_html__( 'Enable Authorize.Net Payment Form', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-authorizenet-payment-form"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'use_authorize" name="' . CF7ADN_META_PREFIX . 'use_authorize" type="checkbox" class="enable_required" value="1" ' . checked( $use_authorize, 1, false ) . '/>' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'use_authorize" name="' . esc_attr(CF7ADN_META_PREFIX) . 'use_authorize" type="checkbox" class="enable_required" value="1" ' . checked( $use_authorize, 1, false ) . '/>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'mode_sandbox">' .
-							__( 'Enable Test API Mode', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'mode_sandbox">' .
+						esc_html__( 'Enable Test API Mode', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-test-api-mode"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'mode_sandbox" name="' . CF7ADN_META_PREFIX . 'mode_sandbox" type="checkbox" value="1" ' . checked( $mode_sandbox, 1, false ) . ' />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'mode_sandbox" name="' . esc_attr(CF7ADN_META_PREFIX) . 'mode_sandbox" type="checkbox" value="1" ' . checked( $mode_sandbox, 1, false ) . ' />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th scope="row">' .
-						'<label for="' . CF7ADN_META_PREFIX . 'debug">' .
-							__( 'Enable Debug Mode', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'debug">' .
+						esc_html__( 'Enable Debug Mode', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-debug-mode"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'debug" name="' . CF7ADN_META_PREFIX . 'debug" type="checkbox" value="1" ' . checked( $debug_authorize, 1, false ) . '/>' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'debug" name="' . esc_attr(CF7ADN_META_PREFIX) . 'debug" type="checkbox" value="1" ' . checked( $debug_authorize, 1, false ) . '/>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'sandbox_login_id">' .
-							__( 'Sandbox Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_login_id">' .
+						esc_html__( 'Sandbox Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-sandbox-login-id"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'sandbox_login_id" name="' . CF7ADN_META_PREFIX . 'sandbox_login_id" type="text" class="large-text form-required-fields" value="' . esc_attr( $sandbox_login_id ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_login_id" name="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_login_id" type="text" class="large-text form-required-fields" value="' . esc_attr( $sandbox_login_id ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'sandbox_transaction_key">' .
-							__( 'Sandbox Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_transaction_key">' .
+						esc_html__( 'Sandbox Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-sandbox-transaction-key"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'sandbox_transaction_key" name="' . CF7ADN_META_PREFIX . 'sandbox_transaction_key" type="text" class="large-text form-required-fields" value="' . esc_attr( $sandbox_transaction_key ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_transaction_key" name="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_transaction_key" type="text" class="large-text form-required-fields" value="' . esc_attr( $sandbox_transaction_key ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'live_login_id">' .
-							__( 'Live Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'live_login_id">' .
+							esc_html__( 'Live Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-live-login-id"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'live_login_id" name="' . CF7ADN_META_PREFIX . 'live_login_id" type="text" class="large-text form-required-fields" value="' . esc_attr( $live_login_id ) . '" ' . ( empty( $mode_sandbox ) && !empty( $use_authorize ) ? 'required' : '' ) . '/>' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'live_login_id" name="' . esc_attr(CF7ADN_META_PREFIX) . 'live_login_id" type="text" class="large-text form-required-fields" value="' . esc_attr( $live_login_id ) . '" ' . ( empty( $mode_sandbox ) && !empty( $use_authorize ) ? 'required' : '' ) . '/>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'live_transaction_key">' .
-							__( 'Live Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="'  . esc_attr(CF7ADN_META_PREFIX) . 'live_transaction_key">' .
+							esc_html__( 'Live Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-live-transaction-key"></span>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'live_transaction_key" name="' . CF7ADN_META_PREFIX . 'live_transaction_key" type="text" class="large-text form-required-fields" value="' . esc_attr( $live_transaction_key ) . '" ' . ( empty( $mode_sandbox ) && !empty( $use_authorize ) ? 'required' : '' ) . '/>' .
+						'<input id="'  . esc_attr(CF7ADN_META_PREFIX) . 'live_transaction_key" name="'  . esc_attr(CF7ADN_META_PREFIX) . 'live_transaction_key" type="text" class="large-text form-required-fields" value="' . esc_attr( $live_transaction_key ) . '" ' . ( empty( $mode_sandbox ) && !empty( $use_authorize ) ? 'required' : '' ) . '/>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'amount">' .
-							__( 'Amount Field Name (required)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="'  . esc_attr(CF7ADN_META_PREFIX) . 'amount">' .
+						esc_html__( 'Amount Field Name (required)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-amount-field"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'amount" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'amount" ' . ( !empty( $use_authorize ) ? 'required' : '' ) . '>';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'amount" class="form-required-fields" name="' . esc_attr(CF7ADN_META_PREFIX) . 'amount" ' . ( !empty( $use_authorize ) ? 'required' : '' ) . '>';
 							echo '<option value="">Select Field Name</option>';
 									if ( !empty( $cf7adntags ) ) {
 										foreach ( $cf7adntags as $key => $value ) {
-											echo '<option value="' . esc_attr( $value ) . '" ' . selected( $amount, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+											echo '<option value="' . esc_attr( $value ) . '" ' . selected( $amount, $value, false ) . '>' . esc_html( $value ) . '</option>';
 										}
 								}
 						echo '</select>' .
@@ -211,17 +211,17 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'quantity">' .
-							__( 'Quantity Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'quantity">' .
+							esc_html__( 'Quantity Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-quantity-field-name"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'quantity" name="' . CF7ADN_META_PREFIX . 'quantity">';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'quantity" name="' . esc_attr(CF7ADN_META_PREFIX) . 'quantity">';
 							echo '<option value="">Select Field Name</option>';
 									if ( !empty( $cf7adntags ) ) {
 										foreach ( $cf7adntags as $key => $value ) {
-											echo '<option value="' . esc_attr( $value ) . '" ' . selected( $quantity, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+											echo '<option value="' . esc_attr( $value ) . '" ' . selected( $quantity, $value, false ) . '>' . esc_html( $value ) . '</option>';
 										}
 								}
 						echo '</select>' .
@@ -229,17 +229,17 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'email">' .
-							__( 'Customer Email Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'email">' .
+						esc_html__( 'Customer Email Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-customer-email-field-name"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'email" name="' . CF7ADN_META_PREFIX . 'email">';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'email" name="' . esc_attr(CF7ADN_META_PREFIX) . 'email">';
 						echo '<option value="">Select Field Name</option>';
 								if ( !empty( $cf7adntags ) ) {
 									foreach ( $cf7adntags as $key => $value ) {
-										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $email, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $email, $value, false ) . '>' . esc_html( $value ) . '</option>';
 									}
 							}
 						echo '</select>' .
@@ -247,17 +247,17 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'description">' .
-							__( 'Description Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'description">' .
+						esc_html__( 'Description Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-description-field-name"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'description" name="' . CF7ADN_META_PREFIX . 'description">';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'description" name="' . esc_attr(CF7ADN_META_PREFIX) . 'description">';
 						echo '<option value="">Select Field Name</option>';
 								if ( !empty( $cf7adntags ) ) {
 									foreach ( $cf7adntags as $key => $value ) {
-										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $description, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $description, $value, false ) . '>' . esc_html( $value ) . '</option>';
 									}
 							}
 						echo '</select>' .
@@ -265,17 +265,17 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 	 			'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'currency">' .
-							__( 'Select Currency', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'currency">' .
+						esc_html__( 'Select Currency', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-select-currency"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'currency" name="' . CF7ADN_META_PREFIX . 'currency">';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'currency" name="' . esc_attr(CF7ADN_META_PREFIX) . 'currency">';
 
 							if ( !empty( $currency_code ) ) {
 								foreach ( $currency_code as $key => $value ) {
-									echo '<option value="' . esc_attr( $key ) . '" ' . selected( $currency, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+									echo '<option value="' . esc_attr( $key ) . '" ' . selected( $currency, $key, false ) . '>' . esc_html( $value ) . '</option>';
 								}
 							}
 
@@ -284,38 +284,36 @@ echo '<div class="cf7adn-settings">' .
 				'</tr/>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'success_returnurl">' .
-							__( 'Success Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl">' .
+							esc_html__( 'Success Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-success-return-url"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'success_returnurl" name="' . CF7ADN_META_PREFIX . 'success_returnurl">' .
-							'<option>' . __( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
-
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl" name="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl">' .
+							'<option>' . esc_html__( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
 							if( !empty( $all_pages ) ) {
-								foreach ( $all_pages as $post_id => $title ) {
-									echo '<option value="' . esc_attr( $post_id ) . '" ' . selected( $success_returnURL, $post_id, false )  . '>' . $title . '</option>';
+								foreach ( $all_pages as $new_post_id => $new_title ) {  
+									echo '<option value="' . esc_attr( $new_post_id ) . '" ' . selected( $success_returnURL, $new_post_id, false )  . '>' . esc_html($new_title) . '</option>';
 								}
 							}
-
 						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'cancel_returnurl">' .
-							__( 'Cancel Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl">' .
+						esc_html__( 'Cancel Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-cancel-return-url"></span>' .
 					'</th>' .
 					'<td>' .
-						'<select id="' . CF7ADN_META_PREFIX . 'cancel_returnurl" name="' . CF7ADN_META_PREFIX . 'cancel_returnurl">' .
-							'<option>' . __( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
+						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl" name="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl">' .
+							'<option>' . esc_html__( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
 
 							if( !empty( $all_pages ) ) {
-								foreach ( $all_pages as $post_id => $title ) {
-									echo '<option value="' . esc_attr( $post_id ) . '" ' . selected( $cancel_returnURL, $post_id, false )  . '>' . $title . '</option>';
+								foreach ( $all_pages as $new_post_id => $new_title ) { 
+									echo '<option value="' . esc_attr( $new_post_id ) . '" ' . selected( $cancel_returnURL, $new_post_id, false )  . '>' . esc_html($new_title) . '</option>';
 								}
 							}
 
@@ -326,15 +324,15 @@ echo '<div class="cf7adn-settings">' .
 				/**
 				 * - Add new field at the middle.
 				 *
-				 * @var int $post_id
+				 * @var int $new_post_id
 				 */
-				do_action(  CF7ADN_PREFIX . '/add/fields/middle', $post_id );
+				do_action(  CF7ADN_PREFIX . '/add/fields/middle', $new_post_id );
 
 				echo '<tr class="form-field">' .
 					'<th colspan="2">' .
-						'<label for="' . CF7ADN_META_PREFIX . 'customer_details">' .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'customer_details">' .
 							'<h3 style="margin: 0;">' .
-								__( 'Customer Details', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Customer Details', 'contact-form-7-authorize-net-addon' ) .
 								'<span class="arrow-switch"></span>' .
 							'</h3>' .
 						'</label>' .
@@ -342,93 +340,93 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'first_name">' .
-							__( 'First Name', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name">' .
+						esc_html__( 'First Name', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'first_name" name="' . CF7ADN_META_PREFIX . 'first_name" type="text" class="regular-text" value="' . esc_attr( $first_name ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name" type="text" class="regular-text" value="' . esc_attr( $first_name ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'last_name">' .
-							__( 'Last Name', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name">' .
+						esc_html__( 'Last Name', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'last_name" name="' . CF7ADN_META_PREFIX . 'last_name" type="text" class="regular-text" value="' . esc_attr( $last_name ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name" type="text" class="regular-text" value="' . esc_attr( $last_name ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'company_name">' .
-							__( 'Company Name', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name">' .
+						esc_html__( 'Company Name', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'company_name" name="' . CF7ADN_META_PREFIX . 'company_name" type="text" class="regular-text" value="' . esc_attr( $company_name ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name" type="text" class="regular-text" value="' . esc_attr( $company_name ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'address">' .
-							__( 'Address', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'address">' .
+						esc_html__( 'Address', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'address" name="' . CF7ADN_META_PREFIX . 'address" type="text" class="regular-text" value="' . esc_attr( $address ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'address" name="' . esc_attr(CF7ADN_META_PREFIX) . 'address" type="text" class="regular-text" value="' . esc_attr( $address ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'city">' .
-							__( 'City', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'city">' .
+						esc_html__( 'City', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'city" name="' . CF7ADN_META_PREFIX . 'city" type="text" class="regular-text" value="' . esc_attr( $city ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'city" name="' . esc_attr(CF7ADN_META_PREFIX) . 'city" type="text" class="regular-text" value="' . esc_attr( $city ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'state">' .
-							__( 'State', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'state">' .
+						esc_html__( 'State', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'state" name="' . CF7ADN_META_PREFIX . 'state" type="text" class="regular-text" value="' . esc_attr( $state ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'state" name="' . esc_attr(CF7ADN_META_PREFIX) . 'state" type="text" class="regular-text" value="' . esc_attr( $state ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'zip_code">' .
-							__( 'Zip Code', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code">' .
+						esc_html__( 'Zip Code', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'zip_code" name="' . CF7ADN_META_PREFIX . 'zip_code" type="text" class="regular-text" value="' . esc_attr( $zip_code ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code" name="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code" type="text" class="regular-text" value="' . esc_attr( $zip_code ) . '" />' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . CF7ADN_META_PREFIX . 'country">' .
-							__( 'Country', 'contact-form-7-authorize-net-addon' ) .
+						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'country">' .
+						esc_html__( 'Country', 'contact-form-7-authorize-net-addon' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . CF7ADN_META_PREFIX . 'country" name="' . CF7ADN_META_PREFIX . 'country" type="text" class="regular-text" value="' . esc_attr( $country ) . '" />' .
+						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'country" name="' . esc_attr(CF7ADN_META_PREFIX) . 'country" type="text" class="regular-text" value="' . esc_attr( $country ) . '" />' .
 					'</td>' .
 				'</tr>';
 
 				/**
 				 * - Add new field at the end.
 				 *
-				 * @var int $post_id
+				 * @var int $new_post_id
 				 */
-				do_action(  CF7ADN_PREFIX . '/add/fields/end', $post_id );
+				do_action(  CF7ADN_PREFIX . '/add/fields/end', $new_post_id );
 
-				echo '<input type="hidden" name="post" value="' . esc_attr( $post_id ) . '">' .
+				echo '<input type="hidden" name="post" value="' . esc_attr( $new_post_id ) . '">' .
 			'</tbody>' .
 		'</table>' .
 	'</div>' .
@@ -638,5 +636,5 @@ add_action('admin_print_footer_scripts', function() {
 		} );
 	</script>
 	<?php
-	echo ob_get_clean();
+	ob_get_clean(); // Get the buffered output and clean the buffer
 } );
