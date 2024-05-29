@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  */
 
 if ( !defined( 'CF7ADN_VERSION' ) ) {
-	define( 'CF7ADN_VERSION', '2.0' ); // Version of plugin
+  define( 'CF7ADN_VERSION', '2.0' ); // Version of plugin
 }
 
 if ( !defined( 'CF7ADN_FILE' ) ) {
