@@ -165,7 +165,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 				'<p>' .
 					sprintf(
 						/* translators: Contact Form 7 - Authorize.NET Add-on */
-						esc_html( '<p><strong><a href="https://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a></strong> is required to use <strong>%s</strong>.</p>', 'contact-form-7-paypal-extension' ),
+						__( '<p><strong><a href="https://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a></strong> is required to use <strong>%s</strong>.</p>', 'contact-form-7-paypal-extension' ), //phpcs:ignore
 						'Contact Form 7 - Authorize.NET Add-on'
 					) .
 				'</p>' .
