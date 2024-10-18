@@ -1,3 +1,4 @@
+
 # Accept Authorize.NET Payments Using Contact Form 7
 ZealousWeb Technologies has launched its ‘Accept Authorize.NET payment gateway using Contact Form 7 Pro’ plugin that integrates the payment gateway with Contact Form 7. This is ideal for users who face fee-related issues, helping them receive credit card payments directly from customers. Relying on this plugin prevents users from landing on a third-party payment page.
 You can Create multiple payment forms using Contact Form 7.
