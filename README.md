@@ -6,6 +6,25 @@ Supports various formats on a single post or page.
 You can enable Test API Mode to ensure the proper functioning of the payment transactions.
 You can view Authorize.Net payment data details on the Admin side.
 
+**Features of Accept Authorize.NET Payments Using Contact Form 7**
+
+- Gives you the option to receive payments in 25 different currencies.
+- You can Create multiple payment forms using Contact Form 7.
+- Supports multiple forms on a single post or page.
+- Permits to take values from all input fields including drop-down menu, textbox, hidden field, radio buttons, etc.
+- Accepts dynamic value from front-end parameters like item description, amount, email, quantity, and customer details.
+- You can enable Test API Mode to ensure the proper functioning of the payments transactions.
+- In the Free version of Authorize.NET, you can view the payment transactions of up to 10 Entries in the admin panel.
+- You can view Authorize.Net payment data details on the Admin side.
+- Option to export Payment data in Contact Form 7 to CSV.
+- Options for filters and search facility at the Admin side.
+- Admin can view and delete the payment data.
+- Individual emails are sent to customers and admin after Authorize.net payment transactions.
+- You can personalize the content of the email sent to the customer and admin after transactions.
+- You can add ‘Success Return URL’ and ‘Cancel Return URL’ pages to redirect after the payment transaction.
+- Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
+- Compatibility of WordPress VIP
+
 # Installation
 1. Download the plugin zip file from WordPress.org plugin site to your desktop / PC
 2. If the file is downloaded as a zip archive, extract the plugin folder to your desktop.
