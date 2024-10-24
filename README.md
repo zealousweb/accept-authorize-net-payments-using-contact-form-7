@@ -52,7 +52,7 @@ The Add-on provides you the option to make payment only once. There is no recurr
 - You can Create multiple payment forms using Contact Form 7.
 - Supports various formats on a single post or page.
 
-<strong>[Demo for Abandoned Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/))</strong>
+<strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
 
 **OUR OTHER PLUGINS**
 
