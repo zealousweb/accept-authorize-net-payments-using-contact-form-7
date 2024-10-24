@@ -1,10 +1,10 @@
 
 # Accept Authorize.NET Payments Using Contact Form 7
-ZealousWeb Technologies has launched its ‘Accept Authorize.NET payment gateway using Contact Form 7 Pro’ plugin that integrates the payment gateway with Contact Form 7. This is ideal for users who face fee-related issues, helping them receive credit card payments directly from customers. Relying on this plugin prevents users from landing on a third-party payment page.
-You can Create multiple payment forms using Contact Form 7.
-Supports various formats on a single post or page.
-You can enable Test API Mode to ensure the proper functioning of the payment transactions.
-You can view Authorize.Net payment data details on the Admin side.
+Shortly after integrating a PayPal and Stripe payment gateway with Contact Form 7, ZealousWeb Technologies has now come up with an Authorize.Net payment gateway, which can also be successfully integrated with Contact Form 7. The new Accept Authorize.NET Payments Using Contact Form 7 can be remarkably helpful for receiving payments safely. The users facing payment related issues can rely on this Plugin. You can receive credit card payments directly from your customers, thus preventing them from landing upon a third party payment page.
+
+The process works very efficiently; once the users submit the contact form, the payment checkout form is then displayed before them for quick and secure transactions. This indicates that Accept Authorize.NET Payments Using Contact Form 7 can help your websites to generate revenue quickly.
+
+The Add-on provides you the option to make payment only once. There is no recurring payment option available. Users can select the option to make payment for one time since recurring transactions are not allowed. Our technical team supports the integration of Accept Authorize.NET Payments Using Contact Form 7 within 30 days from the date of purchase, including all the public holidays and weekends. However, we do not assure the Accept Authorize.NET Payments Using Contact Form 7 with any other third-party Add-on. Our team shall look into the compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Add-ons within 30 days of support if the task is of less complexity. Our team will charge extra for more complex issues of compatibility of Accept Authorize.NET Payments Using Contact Form 7 with third-party Ad-ons. The complexity of the tasks will solely be decided by and will at the discretion of ZealousWeb.
 
 **Features of Accept Authorize.NET Payments Using Contact Form 7**
 
@@ -24,6 +24,47 @@ You can view Authorize.Net payment data details on the Admin side.
 - You can add ‘Success Return URL’ and ‘Cancel Return URL’ pages to redirect after the payment transaction.
 - Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
 - Compatibility of WordPress VIP
+
+**Features of Accept Authorize.NET Payments Using Contact Form 7 pro**
+- Allow taking values from all input fields, including drop-down menu, textbox, hidden area, radio buttons, etc.
+- Accepts dynamic value from front-end parameters like item description, amount, email, quantity, and customer details.
+- Option to export Payment data in Contact Form 7 to CSV.
+- Options for filters and search facility at the Admin side.
+- Admin can view and delete the payment data.
+- Individual emails are sent to customers and admin after Authorize.net payment transactions.
+- You can personalize the content of the email sent to the customer and admin after transactions.
+- You can add ‘Success Return URL’ and ‘Cancel Return URL’ pages to redirect after the payment transaction.
+- Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
+- The position of the Insert Tag for Authorize tag [authorize* authorize-Xyz “Button Name”] will always be above the Submit button.
+- Compatibility of WordPress VIP.
+- Recurring Payment accept with Authorize.NET with cancel recurring option from admin.
+- Easy to export Contact Form 7 payment data to CSV
+
+**New Features 3.0**
+
+- Quickly view transaction status with the WordPress Dashboard widget
+- Separate dashboard for all transactions using GUI Graph
+- Offer email templates for the user and admin contact forms
+- Refund functionality
+- Debug Log functionality to check if any developer payments or processes if blocked
+- Recurring Payment accept with Authorize.NET with cancel recurring option from admin.
+- You can enable Test API Mode to ensure the proper functioning of the payment transactions.
+- You can Create multiple payment forms using Contact Form 7.
+- Supports various formats on a single post or page.
+
+<strong>[Demo for Abandoned Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/))</strong>
+
+**OUR OTHER PLUGINS**
+
+* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-paypal-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-stripe-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-elavon-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-2checkout-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
+* <strong>[User Registration Using Contact Form 7 Pro](https://store.zealousweb.com/user-registration-using-contact-form-7-pro)</strong>
+* <strong>[Abandoned Contact Form 7 Pro](https://store.zealousweb.com/abandoned-contact-form-7-pro)</strong>
+* <strong>[Custom Product Options WooCommerce Pro](https://store.zealousweb.com/wordpress-plugins/custom-product-options-woocommerce-pro)</strong>
 
 # Installation
 1. Download the plugin zip file from WordPress.org plugin site to your desktop / PC
