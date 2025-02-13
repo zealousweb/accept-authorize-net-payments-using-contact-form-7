@@ -3,7 +3,7 @@
  * Plugin Name: Accept Authorize.NET Payments Using Contact Form 7
  * Plugin URL: https://wordpress.org/plugins/accept-authorize-net-payments-using-contact-form-7/
  * Description:  This plugin will integrate Authorize.NET payment gateway for making your payments through Contact Form 7.
- * Version: 2.3
+ * Version: 2.4
  * Author: ZealousWeb
  * Author URI: https://www.zealousweb.com
  * Developer: The Zealousweb Team

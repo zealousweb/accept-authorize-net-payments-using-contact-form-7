@@ -7,9 +7,9 @@ Requires at least: 4.9
 Tested up to: 6.6
 CF7 requires at least: 5.0
 CF7 tested up to: 5.7.5.1
-Version: 2.3
+Version: 2.4
 CF7 tested up to: 5.8
-Stable tag: 2.3
+Stable tag: 2.4
 License: GPLv3 or later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -87,6 +87,9 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.4 =
+* Minor adjustments regarding workflow
 
 = 2.3 =
 * security issues fixed.
