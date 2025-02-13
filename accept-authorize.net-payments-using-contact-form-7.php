@@ -3,14 +3,13 @@
  * Plugin Name: Accept Authorize.NET Payments Using Contact Form 7
  * Plugin URL: https://wordpress.org/plugins/accept-authorize-net-payments-using-contact-form-7/
  * Description:  This plugin will integrate Authorize.NET payment gateway for making your payments through Contact Form 7.
- * Version: 2.1
+ * Version: 2.3
  * Author: ZealousWeb
  * Author URI: https://www.zealousweb.com
  * Developer: The Zealousweb Team
  * Developer E-Mail: opensource@zealousweb.com
- * Text Domain: accept-authorize.net-payments-using-contact-form-7
+ * Text Domain: accept-authorize-net-payments-using-contact-form-7
  * Domain Path: /languages
- *
  * Copyright: © 2009-2021 ZealousWeb Technologies.
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,7 +26,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  */
 
 if ( !defined( 'CF7ADN_VERSION' ) ) {
-  define( 'CF7ADN_VERSION', '2.1' ); // Version of plugin
+  define( 'CF7ADN_VERSION', '2.3' ); // Version of plugin
 }
 
 if ( !defined( 'CF7ADN_FILE' ) ) {
@@ -55,7 +54,7 @@ if ( !defined( 'CF7ADN_PREFIX' ) ) {
 }
 
 if ( !defined( 'CFADZW_PRODUCT' ) ) {
-	define( 'CFADZW_PRODUCT', 'https://www.zealousweb.com/store/accept-authorize-net-payments-using-contact-form-7' ); // Plugin Document Link
+	define( 'CFADZW_PRODUCT', 'https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro' ); // Pro Plugin Document Link
 }
 
 /**
@@ -73,7 +72,7 @@ if ( !function_exists( 'CF7ADN' ) ) {
 		require_once( CF7ADN_DIR . '/inc/front/class.' . CF7ADN_PREFIX . '.front.filter.php' );
 	}
 
-	require_once( CF7ADN_DIR . '/inc/lib/class.' . CF7ADN_PREFIX . '.lib.php' );
+	require_once( CF7ADN_DIR . '/inc/lib/class.' . CF7ADN_PREFIX . '.lib.php' ); 
 
 	//Initialize all the things.
 	require_once( CF7ADN_DIR . '/inc/class.' . CF7ADN_PREFIX . '.php' );

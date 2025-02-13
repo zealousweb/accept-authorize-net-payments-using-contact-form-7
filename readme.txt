@@ -4,14 +4,14 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, contact form, contact form 7
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.5
-License: GPLv3 or later License
+Tested up to: 6.6
 CF7 requires at least: 5.0
 CF7 tested up to: 5.7.5.1
-Version: 2.1
+Version: 2.3
 CF7 tested up to: 5.8
-Stable tag: 2.1
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Stable tag: 2.3
+License: GPLv3 or later
+License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
 Contact Form 7 - Integrate Authorize.Net payment gateway for making your payments through Contact Form 7. 
 
@@ -40,6 +40,7 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * You can personalize the content of the email sent to the customer and admin after transactions.
 * You can add ‘Success Return URL’ and ‘Cancel Return URL’ pages to redirect after the payment transaction.
 * Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
+* Compatibility of WordPress VIP
 
 == OUR OTHER PLUGINS ==
 
@@ -48,7 +49,7 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7)</strong>
 * <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-elavon-payments-using-contact-form-7-pro)</strong>
 * <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-2checkout-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-sage-pay-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
 * <strong>[User Registration Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/user-registration-using-contact-form-7-pro)</strong>
 * <strong>[Abandoned Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/abandoned-contact-form-7-pro)</strong>
 * <strong>[Custom Product Options WooCommerce Pro](https://store.zealousweb.com/wordpress-plugins/custom-product-options-woocommerce-pro)</strong>
@@ -71,11 +72,11 @@ Installing the plugin is easy. Just follow these steps:
 
 1. From the dashboard of your site, navigate to Plugins --> Add New.
 2. Select the Upload option and hit "Choose File."
-3. When the popup appears, select the contact-form-7-authorize-net-addon.zip file from your desktop.
+3. When the popup appears, select the accept-authorize-net-payments-using-contact-form.zip file from your desktop.
 4. Follow the on-screen instructions and wait till the upload completes.
 5. When it's finished, activate the plugin via the prompt. A message will display confirming activation was successful.
 
-That's it! Just configure your settings as you see fit, and you're on your way to creating forms with Authorize.net in your style. Are you facing problems while installation? Need help getting things started? Check out the (documentation link)[https://www.zealousweb.com/documentation/contact-form-7-authorize-net-addon/] here.
+That's it! Just configure your settings as you see fit, and you're on your way to creating forms with Authorize.net in your style. Are you facing problems while installation? Need help getting things started? Check out the [Documentation link](https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7) here.
 
 == Screenshots ==
 
@@ -86,6 +87,14 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.3 =
+* security issues fixed.
+
+= 2.2 =
+* The issues with the front side and back side have been resolved.
+* Security
+* Performance
 
 = 2.1 =
 * Tooltip issue fixed

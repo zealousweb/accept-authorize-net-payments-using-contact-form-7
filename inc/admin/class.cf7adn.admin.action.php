@@ -62,11 +62,11 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 * @method action__init
 		 */
 		function action__init() {
-			 wp_register_style( CF7ADN_PREFIX . '_admin_css', CF7ADN_URL . 'assets/css/admin.min.css', array(), CF7ADN_VERSION );
-			wp_register_script( CF7ADN_PREFIX . '_admin_js', CF7ADN_URL . 'assets/js/admin.min.js', array( 'jquery-core' ), CF7ADN_VERSION );
+			wp_register_style( CF7ADN_PREFIX . '_admin_css', CF7ADN_URL . 'assets/css/admin.min.css', array(), CF7ADN_VERSION );
+			wp_register_script( CF7ADN_PREFIX . '_admin_js', CF7ADN_URL . 'assets/js/admin.min.js', array( 'jquery-core' ), CF7ADN_VERSION,true);
 
-			 wp_register_style( 'select2', CF7ADN_URL . 'assets/css/select2.min.css', array(), '4.0.7' );
-			wp_register_script( 'select2', CF7ADN_URL . 'assets/js/select2.min.js', array( 'jquery-core' ), '4.0.7' );
+			wp_register_style( 'select2', CF7ADN_URL . 'assets/css/select2.min.css', array(), '4.0.7' );
+			wp_register_script( 'select2', CF7ADN_URL . 'assets/js/select2.min.js', array( 'jquery-core' ), '4.0.7' ,true);
 		}
 
 		/**
@@ -81,6 +81,9 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 				&& isset( $_REQUEST['form-id'] )
 				&& !empty( $_REQUEST['form-id'] )
 			) {
+				if(isset($_REQUEST['_wpnonce_cfadn']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce_cfadn'])), 'cfadn_import')){
+					return '';
+				}
 				$form_id = sanitize_text_field($_REQUEST['form-id']);
 
 				$exceed_ct = sanitize_text_field( substr( get_option( '_exceed_cfauzw_l' ), 6 ) );
@@ -118,79 +121,76 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 				);
 
 				$data_rows = array();
-
 				if ( !empty( $exported_data ) ) {
-					foreach ( $exported_data as $entry ) {
+				    foreach ( $exported_data as $entry ) {
 
-						$row = array();
+				        $row = array();
 
-						if ( !empty( $header_row ) ) {
-							foreach ( $header_row as $key => $value ) {
+				        if ( !empty( $header_row ) ) {
+				            foreach ( $header_row as $key => $value ) {
 
-								if (
-									   $key != '_transaction_status'
-									&& $key != '_submit_time'
-								) {
+				                if ( $key != '_transaction_status' && $key != '_submit_time' ) {
 
-									$row[$key] = __(
-										(
-											(
-												'_form_id' == $key
-												&& !empty( get_the_title( get_post_meta( $entry->ID, $key, true ) ) )
-											)
-											? get_the_title( get_post_meta( $entry->ID, $key, true ) )
-											: get_post_meta( $entry->ID, $key, true )
-										)
-									);
+				                    $meta_value = (
+				                        '_form_id' == $key
+				                        && !empty( get_the_title( get_post_meta( $entry->ID, $key, true ) ) )
+				                    ) ? get_the_title( get_post_meta( $entry->ID, $key, true )) 
+				                      : get_post_meta( $entry->ID, $key, true );
 
-								} else if ( $key == '_transaction_status' ) {
+				                    if ( is_string( $meta_value ) ) {
+				                        $meta_value = esc_html( $meta_value ); 
+				                    }
 
-									$row[$key] = __(
-										(
-											(
-												!empty( CF7ADN()->lib->response_status )
-												&& array_key_exists( get_post_meta( $entry->ID , $key, true ), CF7ADN()->lib->response_status )
-												&& (get_post_meta($entry->ID, '_transaction_status', true) === '1')
-											)
-											? esc_html__('Succeeded')
-											: get_post_meta( $entry->ID , $key, true )
-										)
-									);
+				                    $row[$key] = $meta_value;
 
-								} else if ( '_submit_time' == $key ) {
-									$row[$key] = __( get_the_date( 'd, M Y H:i:s', $entry->ID ) );
-								}
-							}
-						}
+				                } else if ( $key == '_transaction_status' ) {
 
-						/* form_data */
-						$data = get_post_meta( $entry->ID, '_form_data', true );
-						$hide_data = apply_filters( CF7ADN_PREFIX . '/hide-display', array( '_wpcf7', '_wpcf7_version', '_wpcf7_locale', '_wpcf7_unit_tag', '_wpcf7_container_post' ) );
-						foreach ( $hide_data as $key => $value ) {
-							if ( array_key_exists( $value, $data ) ) {
-								unset( $data[$value] );
-							}
-						}
+				                    $status = (
+				                        !empty( CF7ADN()->lib->response_status )
+				                        && array_key_exists( get_post_meta( $entry->ID, $key, true ), CF7ADN()->lib->response_status )
+				                        && (get_post_meta($entry->ID, '_transaction_status', true) === '1')
+				                    ) ? esc_html__('Succeeded', 'accept-authorize-net-payments-using-contact-form-7')
+				                      : get_post_meta( $entry->ID, $key, true );
 
-						if ( !empty( $data ) ) {
-							foreach ( $data as $key => $value ) {
-								if ( strpos( $key, 'authorize-' ) === false ) {
+				                    if ( is_string( $status ) ) {
+				                        $status = esc_html($status);
+				                    }
 
-									if ( !in_array( $key, $header_row ) ) {
-										$header_row[$key] = $key;
-									}
+				                    $row[$key] = $status;
 
-									$row[$key] = ( is_array( $value ) ? implode( ', ', $value ) : __( $value ) );
+				                } else if ( '_submit_time' == $key ) {
+				                	$submit_time = get_the_date( 'd, M Y H:i:s', $entry->ID );
+    								$row[$key] = esc_html( $submit_time );
+				                }
+				            }
+				        }
 
-								}
-							}
-						}
+				        /* form_data */
+				        $data = get_post_meta( $entry->ID, '_form_data', true );
+				        $hide_data = apply_filters( CF7ADN_PREFIX . '/hide-display', array( '_wpcf7', '_wpcf7_version', '_wpcf7_locale', '_wpcf7_unit_tag', '_wpcf7_container_post' ) );
+				        foreach ( $hide_data as $key => $value ) {
+				            if ( array_key_exists( $value, $data ) ) {
+				                unset( $data[$value] );
+				            }
+				        }
 
-						$data_rows[] = $row;
+				        if ( !empty( $data ) ) {
+				            foreach ( $data as $key => $value ) {
+				                if ( strpos( $key, 'authorize-' ) === false ) {
 
-					}
+				                    if ( !in_array( $key, $header_row ) ) {
+				                        $header_row[$key] = $key;
+				                    }
+
+				                    $row[$key] = is_array( $value ) ? implode( ', ', $value ) : ( is_string( $value ) ? esc_html( $value) : $value ); 
+
+				                }
+				            }
+				        }
+
+				        $data_rows[] = $row;
+				    }
 				}
-
 				ob_start();
 
 				$fh = @fopen( 'php://output', 'w' );
@@ -236,6 +236,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		*/
 		function action__admin_init(){
 			// checking on form submit
+			
 			if( array_key_exists('cfadnimport-plugin-submit', $_REQUEST ) && sanitize_text_field($_REQUEST['cfadnimport-plugin-submit']) != '' ) {
 				$error = array();
 				// checking the nonce first
@@ -297,20 +298,20 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 										if( $row > 0 ) {
 											//Finally inserting the data
-											$form_name      = $data[0];
-											$email          = $data[1];
-											$txn_id         = $data[2];
-											$invoice_no     = $data[3];
-											$amount_val     = $data[4];
-											$quanity_val    = $data[5];
-											$paidAmount     = $data[6];
-											$paidCurrency   = $data[7];
-											$submitTime     = $data[8];
-											$ip_address     = $data[9];
-											$payment_status = $data[10];
-											$stored_data    = $data[11];
-											$charge         = $data[12];
-											$attachent      = $data[13];
+											$form_name      = isset($data[0]) ? $data[0] : null;
+											$email          = isset($data[1]) ? $data[1] : null;
+											$txn_id         = isset($data[2]) ? $data[2] : null;
+											$invoice_no     = isset($data[3]) ? $data[3] : null;
+											$amount_val     = isset($data[4]) ? $data[4] : null;
+											$quanity_val    = isset($data[5]) ? $data[5] : null;
+											$paidAmount     = isset($data[6]) ? $data[6] : null;
+											$paidCurrency   = isset($data[7]) ? $data[7] : null;
+											$submitTime     = isset($data[8]) ? $data[8] : null;
+											$ip_address     = isset($data[9]) ? $data[9] : null;
+											$payment_status = isset($data[10]) ? $data[10] : null;
+											$stored_data    = isset($data[11]) ? $data[11] : null;
+											$charge         = isset($data[12]) ? $data[12] : null; // Default to null if not set
+											$attachent      = isset($data[13]) ? $data[13] : null;
 
 											try {
 												//Finally inserting the data
@@ -386,8 +387,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 * - Add mes boxes for the CPT "cf7adn_data"
 		 */
 		function action__add_meta_boxes() {
-			add_meta_box( 'cfadn-data', esc_html__( 'From Data', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_from_data' ), 'cf7adn_data', 'normal', 'high' );
-			add_meta_box( 'cfadn-help', esc_html__( 'Do you need help for configuration?', 'contact-form-7-authorize-net-addon' ), array( $this, 'cfadn_show_help_data' ), 'cf7adn_data', 'side', 'high' );
+			add_meta_box( 'cfadn-data', esc_html__( 'From Data', 'accept-authorize-net-payments-using-contact-form-7' ), array( $this, 'cfadn_show_from_data' ), 'cf7adn_data', 'normal', 'high' );
+			add_meta_box( 'cfadn-help', esc_html__( 'Do you need help for configuration?', 'accept-authorize-net-payments-using-contact-form-7' ), array( $this, 'cfadn_show_help_data' ), 'cf7adn_data', 'side', 'high' );
 		}
 
 		/**
@@ -446,6 +447,9 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 			if ( !empty( $form_fields ) ) {
 				foreach ( $form_fields as $key ) {
+					if(isset($_REQUEST['_wpnonce_cfadn']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce_cfadn'])), 'cfadn_import')){
+						return '';
+					}
 					$keyval = sanitize_text_field( $_REQUEST[ $key ] ); 
 					update_post_meta( $post_id, $key, $keyval );
 				}
@@ -463,61 +467,45 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 *
 		 * @return string
 		 */
+		
 		function action__manage_cf7adn_data_posts_custom_column( $column, $post_id ) {
-			$data_ct = $this->cfauzw_check_data_ct( sanitize_text_field( $post_id ) );
-			switch ( $column ) {
+		    $data_ct = $this->cfauzw_check_data_ct( sanitize_text_field( $post_id ) );
+		    switch ( $column ) {
 
-				case 'form_id' :
-					if( $data_ct ){
-						echo "<a href='" . esc_url( CFADZW_PRODUCT ) . "' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
-					}else{
-						echo (
-							!empty( get_post_meta( $post_id , '_form_id', true ) )
-							? (
-								!empty( get_the_title( get_post_meta( $post_id , '_form_id', true ) ) )
-								?esc_html__(get_the_title( get_post_meta( $post_id , '_form_id', true ) ))
-								:esc_html__(get_post_meta( $post_id , '_form_id', true ))
-							)
-							: ''
-						);
-					}
-				break;
+		        case 'form_id':
+		            if( $data_ct ){
+		                echo "<a href='" . esc_url( CFADZW_PRODUCT ) . "' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+		            } else {
+		                $form_id = get_post_meta( $post_id, '_form_id', true );
+		                $form_title = get_the_title( $form_id );
+		                echo !empty( $form_title ) ? esc_html( $form_title ) : esc_html( $form_id );
+		            }
+		            break;
 
-				case 'transaction_status' :
-					if( $data_ct ){
-						echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
-					}else{
-						echo (
-							!empty(get_post_meta($post_id, '_transaction_status', true)) ?
-							(
-								(get_post_meta($post_id, '_transaction_status', true) === '1') ?
-									esc_html__('Succeeded') :
-									''
-							) :
-							(
-								(
-									!empty(CF7ADN()->lib->response_status)
-									&& array_key_exists(get_post_meta($post_id, '_transaction_status', true), CF7ADN()->lib->response_status)
-								) ?
-									esc_html__(CF7ADN()->lib->response_status[get_post_meta($post_id, '_transaction_status', true)]) :
-									esc_html__(get_post_meta($post_id, '_transaction_status', true))
-							)
-						);
-						
-						
-					}
-				break;
+		        case 'transaction_status':
+		            if( $data_ct ){
+		                echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+		            } else {
+		                $transaction_status = get_post_meta( $post_id, '_transaction_status', true );
+		                if( $transaction_status === '1' ) {
+		                    echo esc_html__( 'Succeeded' );
+		                } else {
+		                    $response_status = CF7ADN()->lib->response_status;
+		                    echo !empty( $response_status[$transaction_status] ) ? esc_html( $response_status[$transaction_status] ) : esc_html( $transaction_status );
+		                }
+		            }
+		            break;
 
-				case 'total' :
-					if( $data_ct ){
-						echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
-					}else{
-						echo ( !empty( get_post_meta( $post_id , '_total', true ) ) ? esc_html__(get_post_meta( $post_id , '_total', true )) : '' ) .' ' .
-						( !empty( get_post_meta( $post_id , '_currency', true ) ) ? esc_html__(get_post_meta( $post_id , '_currency', true )) : '' );
-					}
-				break;
-
-			}
+		        case 'total':
+		            if( $data_ct ){
+		                echo "<a href='" . esc_url( CFADZW_PRODUCT ) ."' target='_blank'>To unlock more features consider upgrading to PRO.</a>";
+		            } else {
+		                $total = get_post_meta( $post_id, '_total', true );
+		                $currency = get_post_meta( $post_id, '_currency', true );
+		                echo esc_html( $total ) . ' ' . esc_html( $currency );
+		            }
+		            break;
+		    }
 		}
 
 		/**
@@ -583,18 +571,20 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			if ( empty( $posts ) ) {
 				return;
 			}
+			if(isset($_REQUEST['_wpnonce_cfadn']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce_cfadn'])), 'cfadn_import')){
+					return '';
+			}
 
 			$selected = ( isset( $_GET['form-id'] ) ? sanitize_text_field($_GET['form-id']) : '' );
 
 			echo '<select name="form-id" id="form-id">';
-			echo '<option value="all">' . esc_html__( 'Select Form', 'contact-form-7-authorize-net-addon' ) . '</option>';
+			echo '<option value="all">' . esc_html__( 'Select Form', 'accept-authorize-net-payments-using-contact-form-7' ) . '</option>';
 			foreach ( $posts as $post ) {
-				echo '<option value="' . esc_attr( $post->ID ) . '" ' . selected( $selected, $post->ID, false ) . '>' . esc_html__( $post->post_title ) . '</option>';
-
+			    echo '<option value="' . esc_attr( $post->ID ) . '" ' . selected( $selected, $post->ID, false ) . '>' . esc_html( $post->post_title ) . '</option>';
 			}
 			echo '</select>';
 
-			echo '<input type="submit" id="export_csv" name="export_csv" class="button action" value="Export CSV">';
+			echo '<input type="submit" id="export_csv" name="export_csv" class="button action" value="' . esc_attr__( 'Export CSV', 'accept-authorize-net-payments-using-contact-form-7' ) . '"> ';
 
 		}
 
@@ -619,6 +609,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 				&& isset( $_GET['form-id'] )
 				&& 'all' != $_GET['form-id']
 			) {
+
 				$query->query_vars['meta_key']     = '_form_id';
 				$query->query_vars['meta_value']   = sanitize_text_field($_GET['form-id']);
 				$query->query_vars['meta_compare'] = '=';
@@ -636,7 +627,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		function action__admin_notices_export() {
 			echo '<div class="error">' .
 				'<p>' .
-				esc_html__( 'Please select Form to export.', 'contact-form-7-authorize-net-addon' ) .
+				esc_html__( 'Please select Form to export.', 'accept-authorize-net-payments-using-contact-form-7' ) .
 				'</p>' .
 			'</div>';
 		}
@@ -652,12 +643,12 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '<div id="configuration-help" class="postbox">' .
 			wp_kses_post(apply_filters(
 					CF7ADN_PREFIX . '/help/postbox',
-					'<h3>' . __( 'Do you need help for configuration?', CF7ADN_PREFIX ) . '</h3>' .
+					'<h3>' . esc_html__( 'Do you need help for configuration?', 'accept-authorize-net-payments-using-contact-form-7' ) . '</h3>' .
 					'<p></p>' .
 					'<ol>' .
 						'<li><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
-						'<li><a href="mailto:opensource@zealousweb.com">Email us</a></li>' .
+						'<li><a href="mailto:support@zealousweb.com">Email us</a></li>' .
 					'</ol>'
 				)).
 			'</div>';
@@ -681,153 +672,114 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 *
 		 * @param  object $post WP_Post
 		 */
+		
 		function cfadn_show_from_data( $post ) {
+		    $fields = CF7ADN()->lib->data_fields;
+		    $form_id = get_post_meta( $post->ID, '_form_id', true );
+		    $data_ct = $this->cfauzw_check_data_ct( sanitize_text_field( $post->ID ) );
 
-			$fields = CF7ADN()->lib->data_fields;
+		    echo '<table class="cf7adn-box-data form-table">' .
+		        '<style>.inside-field td, .inside-field th{ padding-top: 5px; padding-bottom: 5px;}</style>';
 
-			$form_id = get_post_meta( $post->ID, '_form_id', true );
+		    if ( !empty( $fields ) ) {
+		        if ( $data_ct ) {
+		            echo '<tr class="inside-field"><th scope="row">' . esc_html__( 'You are using Free Accept Authorize.NET Payments Using Contact Form 7 - no license needed. Enjoy! 🙂', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th></tr>';
+		            echo '<tr class="inside-field"><th scope="row"><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro" target="_blank">' . esc_html__( 'To unlock more features consider upgrading to PRO.', 'accept-authorize-net-payments-using-contact-form-7' ) . '</a></th></tr>';
+		        } else {
+		            if ( array_key_exists( '_transaction_response', $fields ) && empty( get_post_meta( $form_id, CF7ADN_META_PREFIX . 'debug', true ) ) ) {
+		                unset( $fields['_transaction_response'] );
+		            }
 
-			$data_ct = $this->cfauzw_check_data_ct( sanitize_text_field( $post->ID ) );
+		            $attachment = ( !empty( get_post_meta( $post->ID, '_attachment', true ) ) ? unserialize( get_post_meta( $post->ID, '_attachment', true ) ) : '' );
+		            $root_path = get_home_path();
 
-			echo '<table class="cf7adn-box-data form-table">' .
-				'<style>.inside-field td, .inside-field th{ padding-top: 5px; padding-bottom: 5px;}</style>';
+		            foreach ( $fields as $key => $value ) {
+		                if ( !empty( get_post_meta( $post->ID, $key, true ) ) && !in_array( $key, ['_form_data', '_transaction_response', '_transaction_status'] ) ) {
+		                    $val = get_post_meta( $post->ID, $key, true );
 
-				if ( !empty( $fields ) ) {
+		                    echo '<tr class="form-field">' .
+		                        '<th scope="row">' .
+		                            '<label for="hcf_author">' . esc_html( $value ) . '</label>' .
+		                        '</th>' .
+		                        '<td>' .
+		                            (
+		                                ( '_form_id' == $key && !empty( get_the_title( get_post_meta( $post->ID, $key, true ) ) ) )
+		                                ? esc_html( get_the_title( get_post_meta( $post->ID, $key, true ) ) )
+		                                : esc_html( get_post_meta( $post->ID, $key, true ) )
+		                            ) .
+		                        '</td>' .
+		                    '</tr>';
 
-					if( $data_ct ){
-						echo'<tr class="inside-field"><th scope="row">You are using Free Accept Qpay payments Using Contact form 7 - no license needed. Enjoy! 🙂</th></tr>';
-							echo'<tr class="inside-field"><th scope="row"><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro" target="_blank">To unlock more features consider upgrading to PRO.</a></th></tr>';
-					}else{
+		                } else if ( !empty( get_post_meta( $post->ID, $key, true ) ) && $key == '_transaction_status' ) {
+		                    echo '<tr class="form-field">' .
+		                        '<th scope="row">' .
+		                            '<label for="hcf_author">' . esc_html( $value ) . '</label>' .
+		                        '</th>' .
+		                        '<td>' .
+		                            (
+		                                ( !empty( CF7ADN()->lib->response_status ) && array_key_exists( get_post_meta( $post->ID, $key, true ), CF7ADN()->lib->response_status ) && get_post_meta( $post->ID, '_transaction_status', true ) === '1' )
+		                                ? esc_html__( 'Succeeded', 'accept-authorize-net-payments-using-contact-form-7' )
+		                                : esc_html( get_post_meta( $post->ID, $key, true ) )
+		                            ) .
+		                        '</td>' .
+		                    '</tr>';
 
-						if ( array_key_exists( '_transaction_response', $fields ) && empty( get_post_meta( $form_id, CF7ADN_META_PREFIX . 'debug', true ) ) ) {
-							unset( $fields['_transaction_response'] );
-						}
+		                } else if ( !empty( get_post_meta( $post->ID, $key, true ) ) && $key == '_form_data' ) {
+		                    echo '<tr class="form-field">' .
+		                        '<th scope="row">' .
+		                            '<label for="hcf_author">' . esc_html( $value ) . '</label>' .
+		                        '</th>' .
+		                        '<td>' .
+		                            '<table>';
 
-						$attachment = ( !empty( get_post_meta( $post->ID, '_attachment', true ) ) ? unserialize( get_post_meta( $post->ID, '_attachment', true ) ) : '' );
-						$root_path = get_home_path();
+		                            $data = get_post_meta( $post->ID, $key, true );
+		                            $hide_data = apply_filters( CF7ADN_PREFIX . '/hide-display', array( '_wpcf7', '_wpcf7_version', '_wpcf7_locale', '_wpcf7_unit_tag', '_wpcf7_container_post' ) );
+		                            foreach ( $hide_data as $key ) {
+		                                if ( array_key_exists( $key, $data ) ) {
+		                                    unset( $data[$key] );
+		                                }
+		                            }
 
-						foreach ( $fields as $key => $value ) {
+		                            if ( !empty( $data ) ) {
+		                                foreach ( $data as $key => $value ) {
+		                                    if ( strpos( $key, 'authorize-' ) === false ) {
+		                                        echo '<tr class="inside-field">' .
+		                                            '<th scope="row">' . esc_html( $key ) . '</th>' .
+		                                            '<td>' .
+		                                                (
+		                                                    ( !empty( $attachment ) && array_key_exists( $key, $attachment ) )
+		                                                    ? '<a href="' . esc_url( home_url( str_replace( $root_path, '/', $attachment[$key] ) ) ) . '" target="_blank" download>' . esc_html( substr( $attachment[$key], strrpos( $attachment[$key], '/' ) + 1 ) ) . '</a>'
+		                                                    : esc_html( is_array( $value ) ? implode( ', ', $value ) : $value )
+		                                                ) .
+		                                            '</td>' .
+		                                        '</tr>';
+		                                    }
+		                                }
+		                            }
 
-							if (
-								!empty( get_post_meta( $post->ID, $key, true ) )
-								&& $key != '_form_data'
-								&& $key != '_transaction_response'
-								&& $key != '_transaction_status'
-							) {
+		                        echo '</table>' .
+		                        '</td>' .
+		                    '</tr>';
 
-								$val = get_post_meta( $post->ID, $key, true );
+		                } else if ( !empty( get_post_meta( $post->ID, $key, true ) ) && $key == '_transaction_response' ) {
+		                    echo '<tr class="form-field">' .
+		                        '<th scope="row">' .
+		                            '<label for="hcf_author">' . esc_html( $value ) . '</label>' .
+		                        '</th>' .
+		                        '<td>' .
+		                            '<code style="word-break: break-all;">' .
+		                                esc_html( get_post_meta( $post->ID , $key, true ) ) .
+		                            '</code>' .
+		                        '</td>' .
+		                    '</tr>';
+		                }
+		            }
+		        }
+		    }
 
-								echo '<tr class="form-field">' .
-									'<th scope="row">' .
-										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
-									'</th>' .
-									'<td>' .
-										(
-											(
-												'_form_id' == $key
-												&& !empty( get_the_title( get_post_meta( $post->ID, $key, true ) ) )
-											)
-											? esc_html__(get_the_title( get_post_meta( $post->ID, $key, true ) ))
-											: esc_html__(get_post_meta( $post->ID, $key, true ))
-										) .
-									'</td>' .
-								'</tr>';
-
-							} else if (
-								!empty( get_post_meta( $post->ID, $key, true ) )
-								&& $key == '_transaction_status'
-							) {
-
-								echo '<tr class="form-field">' .
-									'<th scope="row">' .
-										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
-									'</th>' .
-									'<td>' .
-										(
-											(
-												!empty(CF7ADN()->lib->response_status)
-												&& array_key_exists(get_post_meta($post->ID, $key, true), CF7ADN()->lib->response_status)
-												&& get_post_meta($post->ID, '_transaction_status', true) === '1'
-											)
-											? esc_html__('Succeeded')
-											: esc_html__(get_post_meta($post->ID, $key, true))
-										) .
-										
-									'</td>' .
-								'</tr>';
-
-							} else if (
-								!empty( get_post_meta( $post->ID, $key, true ) )
-								&& $key == '_form_data'
-							) {
-
-								echo '<tr class="form-field">' .
-									'<th scope="row">' .
-										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
-									'</th>' .
-									'<td>' .
-										'<table>';
-
-											$data = get_post_meta( $post->ID, $key, true );
-											$hide_data = apply_filters( CF7ADN_PREFIX . '/hide-display', array( '_wpcf7', '_wpcf7_version', '_wpcf7_locale', '_wpcf7_unit_tag', '_wpcf7_container_post' ) );
-											foreach ( $hide_data as $key => $value ) {
-												if ( array_key_exists( $value, $data ) ) {
-													unset( $data[$value] );
-												}
-											}
-
-											if ( !empty( $data ) ) {
-												foreach ( $data as $key => $value ) {
-													if ( strpos( $key, 'authorize-' ) === false ) {
-														echo '<tr class="inside-field">' .
-															'<th scope="row">' .
-															esc_html__( sprintf( '%s', $key ), 'contact-form-7-authorize-net-addon' ) .
-															'</th>' .
-															'<td>' .
-																(
-																	(
-																		!empty( $attachment )
-																		&& array_key_exists( $key, $attachment )
-																	)
-																	? '<a href="' . esc_url( home_url( str_replace( $root_path, '/', $attachment[$key] ) ) ) . '" target="_blank" download>' . esc_html( substr($attachment[$key], strrpos($attachment[$key], '/') + 1), 'contact-form-7-authorize-net-addon' ) . '</a>'
-																	: esc_html__( sprintf( '%s', ( is_array($value) ? implode( ', ', $value ) :  $value ) ), 'contact-form-7-authorize-net-addon' )
-																) .
-															'</td>' .
-														'</tr>';
-													}
-												}
-											}
-
-										echo '</table>' .
-									'</td>
-								</tr>';
-
-							} else if (
-								!empty( get_post_meta( $post->ID, $key, true ) )
-								&& $key == '_transaction_response'
-							) {
-
-								echo '<tr class="form-field">' .
-									'<th scope="row">' .
-										'<label for="hcf_author">' . esc_html__( sprintf( '%s', $value ), 'contact-form-7-authorize-net-addon' ) . '</label>' .
-									'</th>' .
-									'<td>' .
-										'<code style="word-break: break-all;">' .
-											(
-												esc_html__(get_post_meta( $post->ID , $key, true ))
-											) .
-										'</code>' .
-									'</td>' .
-								'</tr>';
-
-							}
-
-						}
-					}
-				}
-
-			echo '</table>';
+		    echo '</table>';
 		}
+
 
 		/**
 		* check data ct
@@ -853,7 +805,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 					'<ol>' .
 						'<li><a href="https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7" target="_blank">Refer the document.</a></li>' .
 						'<li><a href="https://www.zealousweb.com/contact/" target="_blank">Contact Us</a></li>' .
-						'<li><a href="mailto:opensource@zealousweb.in">Email us</a></li>' .
+						'<li><a href="mailto:support@zealousweb.com">Email us</a></li>' .
 					'</ol>'
 				) ).
 			'</div>';
@@ -884,67 +836,42 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 		 * - Import is success notice
 		 */
 		function action__admin_notices_import_done() {
-			echo '<div class="updated">' .
-				sprintf(
-					/* translators: Contact Form 7 - Stripe Add-on */
-					esc_html__( '<p>Import is done successfully.</p>', 'contact-form-7-stripe-addon' ),
-					'Contact Form 7 - Stripe Add-on'
-				) .
-			'</div>';
+		     $message = esc_html__( 'Import is done successfully.', 'contact-form-7-stripe-addon' );
+    		echo '<div class="updated"><p>' . esc_html($message) . '</p></div>';
 		}
 
 		/**
 		 * Import nonce issue notice
 		 */
-		function action__admin_notices_import_nonce_issue(){
-			echo '<div class="error">' .
-				sprintf(
-					/* translators: Contact Form 7 - Stripe Add-on */
-					esc_html__( '<p>Nonce issue.. Please try again.</p>', 'contact-form-7-stripe-addon' ),
-					'Contact Form 7 - Stripe Add-on'
-				) .
-			'</div>';
+		function action__admin_notices_import_nonce_issue() {
+		    $message = esc_html__( 'Nonce issue.. Please try again.', 'contact-form-7-stripe-addon' );
+    		echo '<div class="error"><p>' . esc_html($message) . '</p></div>';
 		}
 
 		/**
 		 * - Import file format notice
 		 */
 		function action__admin_notices_import_file_format() {
-			echo '<div class="error">' .
-				sprintf(
-					/* translators: Contact Form 7 - Stripe Add-on */
-					esc_html__( '<p>File Format is not suported.</p>', 'contact-form-7-stripe-addon' ),
-					'Contact Form 7 - Stripe Add-on'
-				) .
-			'</div>';
+		   $message = esc_html__( 'File format is not supported.', 'contact-form-7-stripe-addon' );
+    		echo '<div class="error"><p>' . esc_html($message) . '</p></div>';
 		}
 
 		/**
 		 * Import file type notice
 		 */
 		function action__admin_notices_import_file_type() {
-			echo '<div class="error">' .
-				sprintf(
-					/* translators: Contact Form 7 - Stripe Add-on */
-					esc_html__( '<p>File type is not correct. Please upload CSV.</p>', 'contact-form-7-stripe-addon' ),
-					'Contact Form 7 - Stripe Add-on'
-				) .
-			'</div>';
+		    $message = esc_html__( 'File type is not correct. Please upload CSV.', 'contact-form-7-stripe-addon' );
+    		echo '<div class="error"><p>' . esc_html($message) . '</p></div>';
 		}
+
 
 		/**
 		 * - Import fail notice
 		 */
-		function action__admin_notices_import_fail(){
-			echo '<div class="error">' .
-				sprintf(
-					/* translators: Contact Form 7 - Stripe Add-on */
-					esc_html__( '<p>Import is failed contact plugin author.</p>', 'contact-form-7-stripe-addon' ),
-					'Contact Form 7 - Stripe Add-on'
-				) .
-			'</div>';
+		function action__admin_notices_import_fail() {
+		     $message = esc_html__( 'Import has failed. Please contact the plugin author.', 'contact-form-7-stripe-addon' );
+    		echo '<div class="error"><p>' . esc_html($message) . '</p></div>';
 		}
-
 
 	}
 

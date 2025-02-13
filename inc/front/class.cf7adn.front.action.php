@@ -36,7 +36,7 @@ if ( !class_exists( 'CF7ADN_Front_Action' ) ){
 		*/
 
 		function action__wp_enqueue_scripts() {
-			 wp_enqueue_script( CF7ADN_PREFIX . '_front_js', CF7ADN_URL . 'assets/js/front.js', array( 'jquery-core' ), CF7ADN_VERSION );
+			 wp_enqueue_script( CF7ADN_PREFIX . '_front_js', CF7ADN_URL . 'assets/js/front.min.js', array( 'jquery-core' ), CF7ADN_VERSION, true );
 			wp_localize_script( CF7ADN_PREFIX . '_front_js', 'cf7adn_object',
 				array(
 					'ajax_url' => admin_url('admin-ajax.php'),

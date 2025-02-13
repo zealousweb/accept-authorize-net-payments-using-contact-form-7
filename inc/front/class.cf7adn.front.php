@@ -81,9 +81,6 @@ if ( !class_exists( 'CF7ADN_Front' ) ) {
 			if ( !isset( $wp_query->query_vars[$this::BASE_ENDPOINT] ) )
 				return $template;
 
-
-			return CF7ADN_DIR . '/inc/front/template/cf7adn-info.php';
-
 			return $template;
 		}
 

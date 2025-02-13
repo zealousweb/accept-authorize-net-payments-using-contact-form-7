@@ -66,18 +66,18 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			}
 
 			// Traditional WordPress plugin locale filter
-			$locale = apply_filters( 'plugin_locale',  $get_locale, 'contact-form-7-authorize-net-addon' );
-			$mofile = sprintf( '%1$s-%2$s.mo', 'contact-form-7-authorize-net-addon', $locale );
+			$locale = apply_filters( 'plugin_locale',  $get_locale, 'accept-authorize-net-payments-using-contact-form-7' );
+			$mofile = sprintf( '%1$s-%2$s.mo', 'accept-authorize-net-payments-using-contact-form-7', $locale );
 
 			// Setup paths to current locale file
 			$mofile_global = WP_LANG_DIR . '/plugins/' . basename( CF7ADN_DIR ) . '/' . $mofile;
 
 			if ( file_exists( $mofile_global ) ) {
 				// Look in global /wp-content/languages/plugin-name folder
-				load_textdomain( 'contact-form-7-authorize-net-addon', $mofile_global );
+				load_textdomain( 'accept-authorize-net-payments-using-contact-form-7', $mofile_global );
 			} else {
 				// Load the default language files
-				load_plugin_textdomain( 'contact-form-7-authorize-net-addon', false, $cf7adn_lang_dir );
+				load_plugin_textdomain( 'accept-authorize-net-payments-using-contact-form-7', false, $cf7adn_lang_dir );
 			}
 
 
@@ -103,7 +103,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			$tag_generator = WPCF7_TagGenerator::get_instance();
 			$tag_generator->add(
 				'authorize',
-				__( 'Authorize.Net', 'contact-form-7-authorize-net-addon' ),
+				__( 'Authorize.Net', 'accept-authorize-net-payments-using-contact-form-7' ),
 				array( $this, 'wpcf7_tag_generator_authorize_net' )
 			);
 		}
@@ -126,12 +126,12 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			 * Post Type: Authorize.Net Add-on.
 			 */
 			$labels = array(
-				'name' => __( 'Authorize.Net Add-on', 'contact-form-7-authorize-net-addon' ),
-				'singular_name' => __( 'Authorize.Net Add-on', 'contact-form-7-authorize-net-addon' ),
+				'name' => __( 'Authorize.Net Add-on', 'accept-authorize-net-payments-using-contact-form-7' ),
+				'singular_name' => __( 'Authorize.Net Add-on', 'accept-authorize-net-payments-using-contact-form-7' ),
 			);
 
 			$args = array(
-				'label' => __( 'Authorize.Net Add-on', 'contact-form-7-authorize-net-addon' ),
+				'label' => __( 'Authorize.Net Add-on', 'accept-authorize-net-payments-using-contact-form-7' ),
 				'labels' => $labels,
 				'description' => '',
 				'public' => false,
@@ -225,7 +225,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 							$return[ 'message' ] = '';
 						}
 
-						$json = json_encode( $return );
+						$json = wp_json_encode( $return );
 						exit( esc_js( $json ) );
 					}
 				}
@@ -267,7 +267,7 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			$args = wp_parse_args( $args, array() );
 			$type = $args['id'];
 
-			$description = __( "Generate a form-tag for to display Authorize.Net payment form", 'contact-form-7-authorize-net-addon' );
+			$description = __( "Generate a form-tag for to display Authorize.Net payment form", 'accept-authorize-net-payments-using-contact-form-7' );
 			?>
 			<div class="control-box">
 				<fieldset>
@@ -276,15 +276,15 @@ if ( !class_exists( 'CF7ADN' ) ) {
 					<table class="form-table">
 						<tbody>
 							<tr>
-							<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'contact-form-7-authorize-net-addon' ) ); ?></label></th>
+							<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'accept-authorize-net-payments-using-contact-form-7' ) ); ?></label></th>
 							<td>
 								<legend class="screen-reader-text"><input type="checkbox" name="required" value="on" checked="checked" /></legend>
 								<input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" /></td>
 							</tr>
 
 							<tr>
-								<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-values' ); ?>"><?php echo esc_html( __( 'Button Name', 'contact-form-7-authorize-net-addon' ) ); ?></label></th>
-								<td><input type="text" name="values" class="oneline" id="<?php echo esc_attr( $args['content'] . '-values' ); ?>" value="<?php _e( 'Make Payment', 'contact-form-7-authorize-net-addon' ) ?>" /></td>
+								<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-values' ); ?>"><?php echo esc_html( __( 'Button Name', 'accept-authorize-net-payments-using-contact-form-7' ) ); ?></label></th>
+								<td><input type="text" name="values" class="oneline" id="<?php echo esc_attr( $args['content'] . '-values' ); ?>" value="<?php esc_html( 'Make Payment', 'accept-authorize-net-payments-using-contact-form-7' ) ?>" /></td>
 							</tr>
 
 						</tbody>
@@ -296,14 +296,15 @@ if ( !class_exists( 'CF7ADN' ) ) {
 				<input type="text" name="<?php echo esc_attr( $type ); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
 
 				<div class="submitbox">
-					<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7-authorize-net-addon' ) ); ?>" />
+					<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'accept-authorize-net-payments-using-contact-form-7' ) ); ?>" />
 				</div>
 
 				<br class="clear" />
 
 				<p class="description mail-tag">
 					<label for="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>">
-						<?php echo sprintf( esc_html( __( "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab.", 'contact-form-7-authorize-net-addon' ) ), '<strong><span class="mail-tag"></span></strong>' ); ?><input type="text" class="mail-tag code hidden" readonly="readonly" id="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>" />
+						<?php echo sprintf( esc_html("To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab.", 'accept-authorize-net-payments-using-contact-form-7'), '<strong><span class="mail-tag"></span></strong>' ); ?>
+						<input type="text" class="mail-tag code hidden" readonly="readonly" id="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>" />
 					</label>
 				</p>
 			</div>

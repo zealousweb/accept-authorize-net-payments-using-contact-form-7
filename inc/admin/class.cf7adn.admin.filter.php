@@ -53,7 +53,7 @@ if ( !class_exists( 'CF7ADN_Admin_Filter' ) ) {
 		public function filter__wpcf7_editor_panels( $panels ) {
 
 			$panels[ 'authorize-net-add-on' ] = array(
-				'title'    => __( 'Authorize.Net', 'contact-form-7-authorize-net-addon' ),
+				'title'    => __( 'Authorize.Net', 'accept-authorize-net-payments-using-contact-form-7' ),
 				'callback' => array( $this, 'wpcf7_admin_after_additional_settings' )
 			);
 
@@ -112,10 +112,10 @@ if ( !class_exists( 'CF7ADN_Admin_Filter' ) ) {
 		 */
 		function filter__manage_cf7adn_data_posts_columns( $columns ) {
 			unset( $columns['date'] );
-			$columns['form_id'] = __( 'Form ID', 'contact-form-7-authorize-net-addon' );
-			$columns['transaction_status'] = __( 'Transaction Status', 'contact-form-7-authorize-net-addon' );
-			$columns['total'] = __( 'Total Amount', 'contact-form-7-authorize-net-addon' );
-			$columns['date'] = __( 'Submitted Date', 'contact-form-7-authorize-net-addon' );
+			$columns['form_id'] = __( 'Form ID', 'accept-authorize-net-payments-using-contact-form-7' );
+			$columns['transaction_status'] = __( 'Transaction Status', 'accept-authorize-net-payments-using-contact-form-7' );
+			$columns['total'] = __( 'Total Amount', 'accept-authorize-net-payments-using-contact-form-7' );
+			$columns['date'] = __( 'Submitted Date', 'accept-authorize-net-payments-using-contact-form-7' );
 			return $columns;
 		}
 
@@ -171,7 +171,7 @@ if ( !class_exists( 'CF7ADN_Admin_Filter' ) ) {
                 return $links;
             }
             
-            $documentLink = '<a target="_blank" href="https://www.zealousweb.com/wordpress-plugins/product/accept-authorize-net-payments-using-contact-form-7/">' . __( 'Document Link', 'contact-form-7-authorize-net-addon' ) . '</a>';
+            $documentLink = '<a target="_blank" href="https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7">' . __( 'Document Link', 'accept-authorize-net-payments-using-contact-form-7' ) . '</a>';
             array_unshift( $links , $documentLink);
         
             return $links;

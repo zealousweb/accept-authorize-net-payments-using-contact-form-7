@@ -117,7 +117,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th scope="row">' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'use_authorize">' .
-							esc_html__( 'Enable Authorize.Net Payment Form', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Enable Authorize.Net Payment Form', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-authorizenet-payment-form"></span>' .
 					'</th>' .
@@ -128,7 +128,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'mode_sandbox">' .
-							esc_html__( 'Enable Test API Mode', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Enable Test API Mode', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-test-api-mode"></span>' .
 					'</th>' .
@@ -139,7 +139,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th scope="row">' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'debug">' .
-							esc_html__( 'Enable Debug Mode', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Enable Debug Mode', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-enable-debug-mode"></span>' .
 					'</th>' .
@@ -150,7 +150,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_login_id">' .
-							esc_html__( 'Sandbox Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Sandbox Login ID (required)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-sandbox-login-id"></span>' .
 					'</th>' .
@@ -161,7 +161,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'sandbox_transaction_key">' .
-							esc_html__( 'Sandbox Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Sandbox Transaction Key (required)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-sandbox-transaction-key"></span>' .
 					'</th>' .
@@ -172,7 +172,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'live_login_id">' .
-							esc_html__( 'Live Login ID (required)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Live Login ID (required)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-live-login-id"></span>' .
 					'</th>' .
@@ -183,7 +183,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'live_transaction_key">' .
-							esc_html__( 'Live Transaction Key (required)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Live Transaction Key (required)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-live-transaction-key"></span>' .
 					'</th>' .
@@ -194,7 +194,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'amount">' .
-							esc_html__( 'Amount Field Name (required)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Amount Field Name (required)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-amount-field"></span>' .
 					'</th>' .
@@ -212,7 +212,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'quantity">' .
-							esc_html__( 'Quantity Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Quantity Field Name (Optional)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-quantity-field-name"></span>' .
 					'</th>' .
@@ -230,7 +230,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'email">' .
-							esc_html__( 'Customer Email Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Customer Email Field Name (Optional)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-customer-email-field-name"></span>' .
 					'</th>' .
@@ -248,7 +248,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'description">' .
-							esc_html__( 'Description Field Name (Optional)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Description Field Name (Optional)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-description-field-name"></span>' .
 					'</th>' .
@@ -266,7 +266,7 @@ echo '<div class="cf7adn-settings">' .
 	 			'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'currency">' .
-							esc_html__( 'Select Currency', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Select Currency', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-select-currency"></span>' .
 					'</th>' .
@@ -285,13 +285,13 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl">' .
-							esc_html__( 'Success Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Success Return URL (Optional)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-success-return-url"></span>' .
 					'</th>' .
 					'<td>' .
 						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl" name="' . esc_attr(CF7ADN_META_PREFIX) . 'success_returnurl">' .
-							'<option>' . esc_html__( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
+							'<option>' . esc_html__( 'Select page', 'accept-authorize-net-payments-using-contact-form-7' ) . '</option>';
 
 							if( !empty( $all_pages ) ) {
 								foreach ( $all_pages as $post_id => $title ) {  //phpcs:ignore
@@ -305,13 +305,13 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl">' .
-							esc_html__( 'Cancel Return URL (Optional)', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Cancel Return URL (Optional)', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-cancel-return-url"></span>' .
 					'</th>' .
 					'<td>' .
 						'<select id="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl" name="' . esc_attr(CF7ADN_META_PREFIX) . 'cancel_returnurl">' .
-							'<option>' . esc_html__( 'Select page', 'contact-form-7-authorize-net-addon' ) . '</option>';
+							'<option>' . esc_html__( 'Select page', 'accept-authorize-net-payments-using-contact-form-7' ) . '</option>';
 
 							if( !empty( $all_pages ) ) {
 								foreach ( $all_pages as $post_id => $title ) { //phpcs:ignore
@@ -334,7 +334,7 @@ echo '<div class="cf7adn-settings">' .
 					'<th colspan="2">' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'customer_details">' .
 							'<h3 style="margin: 0;">' .
-								esc_html__( 'Customer Details', 'contact-form-7-authorize-net-addon' ) .
+								esc_html__( 'Customer Details', 'accept-authorize-net-payments-using-contact-form-7' ) .
 								'<span class="arrow-switch"></span>' .
 							'</h3>' .
 						'</label>' .
@@ -343,7 +343,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name">' .
-							esc_html__( 'First Name', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'First Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -353,7 +353,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name">' .
-							esc_html__( 'Last Name', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Last Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -363,7 +363,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name">' .
-							esc_html__( 'Company Name', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Company Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -373,7 +373,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'address">' .
-							esc_html__( 'Address', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Address', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -383,7 +383,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'city">' .
-							esc_html__( 'City', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'City', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -393,7 +393,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'state">' .
-							esc_html__( 'State', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'State', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -403,7 +403,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code">' .
-							esc_html__( 'Zip Code', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Zip Code', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -413,7 +413,7 @@ echo '<div class="cf7adn-settings">' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
 						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'country">' .
-							esc_html__( 'Country', 'contact-form-7-authorize-net-addon' ) .
+							esc_html__( 'Country', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
@@ -453,10 +453,8 @@ add_action('admin_print_footer_scripts', function() {
 				jQuery( '#cf7adn-enable-authorizenet-payment-form' ).pointer({
 					pointerClass: 'wp-pointer cf7adn-pointer',
 					content: '<?php
-						_e( '<h3>Enable Authorize.Net Payment</h3>' .
-						'<p>To make enable Authorize.Net Payment with this Form.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
+					echo '<h3>'. esc_html__('Enable Authorize.Net Payment','accept-authorize-net-payments-using-contact-form-7') .'</h3>'.
+					'<p>'.esc_html__('To make enable Authorize.Net Payment with this Form.','accept-authorize-net-payments-using-contact-form-7') .'</p>';?>',
 					position: 'left center',
 				} ).pointer('open');
 			} );
@@ -466,10 +464,8 @@ add_action('admin_print_footer_scripts', function() {
 				jQuery( '#cf7adn-enable-test-api-mode' ).pointer({
 					pointerClass: 'wp-pointer cf7adn-pointer',
 					content: '<?php
-						_e( '<h3>Sandbox mode</h3>' .
-						'<p>Check the Authorize.Net testing guide <a href="https://developer.authorize.net/hello_world/testing_guide/" target="_blank">here</a>.This will display "sandbox mode" warning on checkout.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
+						echo '<h3>'. esc_html__('Sandbox mode','accept-authorize-net-payments-using-contact-form-7') .'</h3>'.
+						'<p>'.esc_html__('Check the Authorize.Net testing guide','accept-authorize-net-payments-using-contact-form-7').' <a href="https://developer.authorize.net/hello_world/testing_guide/" target="_blank">' .esc_html__('here','accept-authorize-net-payments-using-contact-form-7'). '</a> '. esc_html__('This will display "sandbox mode" warning on checkout.','accept-authorize-net-payments-using-contact-form-7').'</p>'; ?>',
 					position: 'left center',
 				} ).pointer('open');
 			} );
@@ -478,11 +474,8 @@ add_action('admin_print_footer_scripts', function() {
 				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
 				jQuery( '#cf7adn-enable-debug-mode' ).pointer({
 					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Debug mode</h3>' .
-						'<p>From this we can get the whole response of Payment Gateway and display in each Entry detail Page.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
+					content: '<?php echo '<h3>'. esc_html__('Debug mode','accept-authorize-net-payments-using-contact-form-7'). '</h3>'.
+						'<p>' .esc_html__('From this we can get the whole response of Payment Gateway and display in each Entry detail Page.','accept-authorize-net-payments-using-contact-form-7').'</p>';?>',
 					position: 'left center',
 				} ).pointer('open');
 			} );
@@ -492,149 +485,115 @@ add_action('admin_print_footer_scripts', function() {
 				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
 				jQuery( '#cf7adn-sandbox-login-id' ).pointer({
 					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Get Your Sandbox Login ID</h3>' .
-						'<p>Get it from <a href="https://sandbox.authorize.net" target="_blank"> Sandbox Authorize.net</a> then <strong> Account > Security Settings > API  Credentials & Keys </strong> page  in your Authorize.Net account.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
+					content: '<?php echo '<h3>'. esc_html__( 'Get Your Sandbox Login ID','accept-authorize-net-payments-using-contact-form-7').'</h3>' .
+						'<p>'.esc_html__('Get it from ','accept-authorize-net-payments-using-contact-form-7').'<a href="https://sandbox.authorize.net" target="_blank">'.esc_html__('Sandbox Authorize.net','accept-authorize-net-payments-using-contact-form-7').'</a>'. esc_html__(' then','accept-authorize-net-payments-using-contact-form-7').'<strong>'.esc_html__('Account > Security Settings > API  Credentials & Keys','accept-authorize-net-payments-using-contact-form-7').'</strong>'.esc_html__(' page  in your Authorize.Net account.','accept-authorize-net-payments-using-contact-form-7').'</p>'; ?>',
 					position: 'left center',
 				} ).pointer('open');
 			} );
 
-			jQuery( '#cf7adn-sandbox-transaction-key' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-sandbox-transaction-key' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Get Your Sandbox Transaction Key</h3>' .
-						'<p>Get it from <a href="https://sandbox.authorize.net" target="_blank"> Sandbox Authorize.net</a> then <strong>Account > Security Settings > API Credentials & Keys </strong> page in your Authorize.Net account. For security reasons, you cannot view your Transaction Key, but you will be able to generate a new one. </p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-sandbox-transaction-key').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-sandbox-transaction-key').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Get Your Sandbox Transaction Key', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Get it from', 'accept-authorize-net-payments-using-contact-form-7') . ' <a href="https://sandbox.authorize.net" target="_blank">' . esc_html__('Sandbox Authorize.net', 'accept-authorize-net-payments-using-contact-form-7') . '</a> ' . esc_html__('then', 'accept-authorize-net-payments-using-contact-form-7') . ' <strong>' . esc_html__('Account > Security Settings > API Credentials & Keys', 'accept-authorize-net-payments-using-contact-form-7') . '</strong> ' . esc_html__('page in your Authorize.Net account. For security reasons, you cannot view your Transaction Key, but you will be able to generate a new one.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-live-login-id' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-live-login-id' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Get Your Live Login ID</h3>' .
-						'<p>Get it from <a href="https://account.authorize.net" target="_blank">Authorize.net</a> then <strong>Account > Security Settings > API Credentials & Keys </strong> page  in your Authorize.Net account.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-live-login-id').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-live-login-id').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Get Your Live Login ID', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Get it from', 'accept-authorize-net-payments-using-contact-form-7') . ' <a href="https://account.authorize.net" target="_blank">' . esc_html__('Authorize.net', 'accept-authorize-net-payments-using-contact-form-7') . '</a> ' . esc_html__('then', 'accept-authorize-net-payments-using-contact-form-7') . ' <strong>' . esc_html__('Account > Security Settings > API Credentials & Keys', 'accept-authorize-net-payments-using-contact-form-7') . '</strong> ' . esc_html__('page in your Authorize.Net account.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-live-transaction-key' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-live-transaction-key' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Get Your Live Transaction Key</h3>' .
-						'<p>Get it from <a href="https://account.authorize.net" target="_blank">Authorize.net</a> then <strong> Account > Security Settings > API Credentials & Keys </strong> page in your Authorize.Net account. For security reasons, you cannot view your Transaction Key, but you will be able to generate a new one. </p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-live-transaction-key').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-live-transaction-key').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Get Your Live Transaction Key', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Get it from', 'accept-authorize-net-payments-using-contact-form-7') . ' <a href="https://account.authorize.net" target="_blank">' . esc_html__('Authorize.net', 'accept-authorize-net-payments-using-contact-form-7') . '</a> ' . esc_html__('then', 'accept-authorize-net-payments-using-contact-form-7') . ' <strong>' . esc_html__('Account > Security Settings > API Credentials & Keys', 'accept-authorize-net-payments-using-contact-form-7') . '</strong> ' . esc_html__('page in your Authorize.Net account. For security reasons, you cannot view your Transaction Key, but you will be able to generate a new one.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-amount-field' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-amount-field' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Add Amount Name</h3>' .
-						'<p>Add here the Name of amount field created in Form. Its required because payment will capture payble amount from this field.</p>'.
-						'<p><strong><span style="color:red">Note:</span> Save the FORM details to view the list of fields.</strong></p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-amount-field').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-amount-field').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Add Amount Name', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Add here the Name of amount field created in Form. It\'s required because payment will capture payable amount from this field.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>' .
+			            '<p><strong><span style="color:red">' . esc_html__('Note:', 'accept-authorize-net-payments-using-contact-form-7') . '</span> ' . esc_html__('Save the FORM details to view the list of fields.', 'accept-authorize-net-payments-using-contact-form-7') . '</strong></p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-quantity-field-name' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-quantity-field-name' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Add Quantity Field Name</h3>' .
-						'<p>Add here the Name of quantity field created in Form.</p>'.
-						'<p><strong><span style="color:red">Note:</span> Save the FORM details to view the list of fields.</strong></p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-quantity-field-name').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-quantity-field-name').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Add Quantity Field Name', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Add here the Name of quantity field created in Form.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>' .
+			            '<p><strong><span style="color:red">' . esc_html__('Note:', 'accept-authorize-net-payments-using-contact-form-7') . '</span> ' . esc_html__('Save the FORM details to view the list of fields.', 'accept-authorize-net-payments-using-contact-form-7') . '</strong></p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-customer-email-field-name' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-customer-email-field-name' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Add Customer Email Field Name</h3>' .
-						'<p>Add here the Name of customer email field created in Form.</p>'.
-						'<p><strong><span style="color:red">Note:</span> Save the FORM details to view the list of fields.</strong></p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-customer-email-field-name').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-customer-email-field-name').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Add Customer Email Field Name', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Add here the Name of customer email field created in Form.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>' .
+			            '<p><strong><span style="color:red">' . esc_html__('Note:', 'accept-authorize-net-payments-using-contact-form-7') . '</span> ' . esc_html__('Save the FORM details to view the list of fields.', 'accept-authorize-net-payments-using-contact-form-7') . '</strong></p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-description-field-name' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-description-field-name' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Add Description Field Name</h3>' .
-						'<p>Add here the Name of description field created in Form.</p>'.
-						'<p><strong><span style="color:red">Note:</span> Save the FORM details to view the list of fields.</strong></p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-description-field-name').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-description-field-name').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Add Description Field Name', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Add here the Name of description field created in Form.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>' .
+			            '<p><strong><span style="color:red">' . esc_html__('Note:', 'accept-authorize-net-payments-using-contact-form-7') . '</span> ' . esc_html__('Save the FORM details to view the list of fields.', 'accept-authorize-net-payments-using-contact-form-7') . '</strong></p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-select-currency' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-select-currency' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Select Currency</h3>' .
-						'<p>Select the currency which is selected from your authorize.net merchant account.<br/><strong>Note:</strong>Authorize.net dont provide multiple currencies for single account</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-select-currency').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-select-currency').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Select Currency', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Select the currency which is selected from your authorize.net merchant account.', 'accept-authorize-net-payments-using-contact-form-7') . '<br/><strong>' . esc_html__('Note:', 'accept-authorize-net-payments-using-contact-form-7') . '</strong>' . esc_html__('Authorize.net does not provide multiple currencies for a single account.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-cancel-return-url' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-cancel-return-url' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Select Cancel Page URL</h3>' .
-						'<p>Here is the list of all your WP pages. You need to create your Cancel Page and select that page from this dropdown. So, when any payment will canceled then on return it will redirect on this Cancel Page.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
+			jQuery('#cf7adn-cancel-return-url').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-cancel-return-url').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Select Cancel Page URL', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Here is the list of all your WP pages. You need to create your Cancel Page and select that page from this dropdown. So, when any payment is canceled, it will redirect to this Cancel Page.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 
-			jQuery( '#cf7adn-success-return-url' ).on( 'mouseenter click', function() {
-				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
-				jQuery( '#cf7adn-success-return-url' ).pointer({
-					pointerClass: 'wp-pointer cf7adn-pointer',
-					content: '<?php
-						_e( '<h3>Select Success Page URL</h3>' .
-						'<p>Here is the list of all your WP pages. You need to create your Success Page and select that page from this dropdown. <br/>So, when any payment will successfully done then on return it will redirect on this Success Page.<br/> On success Page you can use our shortcode <b>[authorize-details]</b> to show transaction detail.</p>',
-						'contact-form-7-authorize-net-addon'
-					); ?>',
-					position: 'left center',
-				} ).pointer('open');
-			} );
-
+			jQuery('#cf7adn-success-return-url').on('mouseenter click', function() {
+			    jQuery('body .wp-pointer-buttons .close').trigger('click');
+			    jQuery('#cf7adn-success-return-url').pointer({
+			        pointerClass: 'wp-pointer cf7adn-pointer',
+			        content: '<?php echo '<h3>' . esc_html__('Select Success Page URL', 'accept-authorize-net-payments-using-contact-form-7') . '</h3>' .
+			            '<p>' . esc_html__('Here is the list of all your WP pages. You need to create your Success Page and select that page from this dropdown. So, when any payment is successfully done, it will redirect to this Success Page.', 'accept-authorize-net-payments-using-contact-form-7') . '<br/>' . esc_html__('On the Success Page, you can use our shortcode', 'accept-authorize-net-payments-using-contact-form-7') . ' <b>[authorize-details]</b> ' . esc_html__('to show transaction details.', 'accept-authorize-net-payments-using-contact-form-7') . '</p>'; ?>',
+			        position: 'left center',
+			    }).pointer('open');
+			});
 		} );
 	</script>
 	<?php

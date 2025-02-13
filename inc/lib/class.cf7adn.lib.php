@@ -12,7 +12,7 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/autoload.php'; 
 
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
@@ -231,7 +231,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 				if ( empty( $amount_val ) ) {
 					add_filter( 'wpcf7_skip_mail', array( $this, 'filter__wpcf7_skip_mail' ), 20 );
-					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = esc_html__( 'Empty Amount field or Invalid configuration.', 'contact-form-7-authorize-net-addon' );
+					$_SESSION[ CF7ADN_META_PREFIX . 'amount_error' . $form_ID ] = esc_html__( 'Empty Amount field or Invalid configuration.', 'accept-authorize-net-payments-using-contact-form-7' );
 					return;
 				}
 
@@ -280,7 +280,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 				$paymentOne = new AnetAPI\PaymentType();
 				$paymentOne->setCreditCard( $creditCard );
 
-				$invoice_no = 'cf7adn/' . mt_rand();
+				$invoice_no = 'cf7adn/' . wp_rand();
 
 				// Create order information
 				$order = new AnetAPI\OrderType();
@@ -488,7 +488,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 								add_post_meta( $adn_post_id, '_currency', sanitize_text_field($currency) );
 								add_post_meta( $adn_post_id, '_form_data', (array)$stored_data);
 								add_post_meta( $adn_post_id, '_attachment', sanitize_text_field($attachent) );
-								add_post_meta( $adn_post_id, '_transaction_response', json_encode( $tresponse ) );
+								add_post_meta( $adn_post_id, '_transaction_response', wp_json_encode( $tresponse ) );
 								add_post_meta( $adn_post_id, '_transaction_status', sanitize_text_field($tresponse->getResponseCode()) );
 							}
 
@@ -563,7 +563,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 								add_post_meta( $adn_post_id, '_request_Ip', sanitize_text_field($this->getUserIpAddr()) );
 								add_post_meta( $adn_post_id, '_currency', sanitize_text_field($currency) );
 								add_post_meta( $adn_post_id, '_form_data', serialize( $stored_data ) );
-								add_post_meta( $adn_post_id, '_transaction_response', json_encode( $tresponse ) );
+								add_post_meta( $adn_post_id, '_transaction_response', wp_json_encode( $tresponse ) );
 								add_post_meta( $adn_post_id, '_transaction_status', sanitize_text_field($tresponse->getResponseCode()) );
 							}
 
@@ -636,16 +636,19 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 		function shortcode__authorize_details() {
 
+			if(isset($_REQUEST['_wpnonce_cfadn']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce_cfadn'])), 'cfadn_import')){
+					return '';
+			}
 			$form_ID = (int)( isset( $_REQUEST['form'] ) ? sanitize_text_field($_REQUEST['form']) : '' );
 			$transactionId = ( isset( $_REQUEST['transactionId'] ) ? sanitize_text_field($_REQUEST['transactionId']) : '' );
 
 			if ( empty( $form_ID ) || empty( $transactionId ) )
-				return '<p style="color: #f00">' . __( 'Something goes wrong! Please try again.', 'contact-form-7-authorize-net-addon' ) . '</p>';
+				return '<p style="color: #f00">' . __( 'Something goes wrong! Please try again.', 'accept-authorize-net-payments-using-contact-form-7' ) . '</p>';
 
 			$use_authorize = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'use_authorize', true );
 
 			if ( empty( $use_authorize ) )
-				return '<p style="color: #f00">' . __( 'Something goes wrong! Please try again.', 'contact-form-7-authorize-net-addon' ) . '</p>';
+				return '<p style="color: #f00">' . __( 'Something goes wrong! Please try again.', 'accept-authorize-net-payments-using-contact-form-7' ) . '</p>';
 
 			ob_start();
 
@@ -690,16 +693,16 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 				echo '<table class="cf7adn-transaction-details" align="left">' .
 					'<tr>'.
-						'<th align="left">' . __( 'Transaction Amount :', 'contact-form-7-authorize-net-addon' ) . '</th>'.
-						'<td align="left">' . $response->getTransaction()->getAuthAmount() . ' ' . $currency . '</td>'.
+						'<th align="left">' . esc_html__( 'Transaction Amount :', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th>'.
+						'<td align="left">' . esc_html($response->getTransaction()->getAuthAmount()) . ' ' . esc_html($currency) . '</td>'.
 					'</tr>' .
 					'<tr>'.
-						'<th align="left">' . __( 'Payment Status :', 'contact-form-7-authorize-net-addon' ) . '</th>'.
-						'<td align="left">' . $status . '</td>'.
+						'<th align="left">' . esc_html__( 'Payment Status :', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th>'.
+						'<td align="left">' . esc_html($status) . '</td>'.
 					'</tr>' .
 					'<tr>'.
-						'<th align="left">' . __( 'Transaction Id :', 'contact-form-7-authorize-net-addon' ) . '</th>'.
-						'<td align="left">' . $response->getTransaction()->getTransId() . '</td>'.
+						'<th align="left">' . esc_html__( 'Transaction Id :', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th>'.
+						'<td align="left">' . esc_html($response->getTransaction()->getTransId()) . '</td>'.
 					'</tr>' .
 				'</table>';
 
@@ -707,11 +710,11 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 
 				echo '<table class="cf7adn-transaction-details" align="left">' .
 					'<tr>'.
-						'<th align="left" colspan="2">' . __( 'ERROR :  Invalid response', 'contact-form-7-authorize-net-addon' ) . '</th>'.
+						'<th align="left" colspan="2">' . esc_html__( 'ERROR :  Invalid response', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th>'.
 					'</tr>' .
 					'<tr>'.
-						'<th align="left">' . __( 'Response :', 'contact-form-7-authorize-net-addon' ) . '</th>'.
-						'<td align="left">' . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . '</td>'.
+						'<th align="left">' . esc_html__( 'Response :', 'accept-authorize-net-payments-using-contact-form-7' ) . '</th>'.
+						'<td align="left">' . esc_html($errorMessages[0]->getCode()) . "  " .esc_html($errorMessages[0]->getText()) . '</td>'.
 					'</tr>' .
 				'</table>';
 
@@ -744,6 +747,10 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 		 */
 		function wpcf7_authorize_validation_filter( $result, $tag ) {
 
+			if(isset($_REQUEST['_wpnonce_cfadn']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce_cfadn'])), 'cfadn_import')){
+					return '';
+			}
+
 			$authorize = isset( $_POST['authorize'] ) ? (array)$_POST['authorize'] : array();
 
 			$id = isset( $_POST['_wpcf7'] ) ? sanitize_text_field($_POST['_wpcf7']) : '';
@@ -762,16 +769,16 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 			$error = array();
 
 			if ( empty( sanitize_text_field($authorize['cardholdername']) ) )
-				$error[] = __( 'Card holder name', 'contact-form-7-authorize-net-addon' );
+				$error[] = esc_html__( 'Card holder name', 'accept-authorize-net-payments-using-contact-form-7' );
 
 			if ( empty( sanitize_text_field($authorize['card_number']) ) )
-				$error[] = __( 'Card number', 'contact-form-7-authorize-net-addon' );
+				$error[] = esc_html__( 'Card number', 'accept-authorize-net-payments-using-contact-form-7' );
 
 			if ( empty( sanitize_text_field($authorize['exp_month']) ) || empty( $authorize['exp_year'] ) )
-				$error[] = __( 'Expiry date and year', 'contact-form-7-authorize-net-addon' );
+				$error[] = esc_html__( 'Expiry date and year', 'accept-authorize-net-payments-using-contact-form-7' );
 
 			if ( empty( sanitize_text_field($authorize['cvv_number']) ) )
-				$error[] = __( 'CVV', 'contact-form-7-authorize-net-addon' );
+				$error[] = esc_html__( 'CVV', 'accept-authorize-net-payments-using-contact-form-7' );
 
 			if ( !empty( $error ) )
 				$result->invalidate( $tag, 'Please enter ' . implode(', ', $error ) );
@@ -793,7 +800,7 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 				return $result;
 			}
 
-			if ( empty( $exp_year ) || !is_numeric( $exp_year ) || strlen( $exp_year ) !== 4 || $exp_year < date( 'Y' ) ) {
+			if ( empty( $exp_year ) || !is_numeric( $exp_year ) || strlen( $exp_year ) !== 4 || $exp_year < gmdate( 'Y' ) ) {
 				$result->invalidate( $tag, 'Credit card expiration date is invalid.' );
 				return $result;
 			}
@@ -982,34 +989,34 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 									sprintf(
 										'<span class="credit_card_details wpcf7-form-control-wrap %1$s" data-name="%1$s">%2$s%3$s</span>',
 										sanitize_html_class( $tag->name ),
-										'<h4>'.__( "Your Credit Card Detail", "contact-form-7-authorize-net-addon" ).':</h4>
+										'<h4>'.esc_html__( "Your Credit Card Detail", "accept-authorize-net-payments-using-contact-form-7" ).':</h4>
 										<p>
-											<label>'.__( "Card holder name", "contact-form-7-authorize-net-addon" ).'</label>
+											<label>'.esc_html__( "Card holder name", "accept-authorize-net-payments-using-contact-form-7" ).'</label>
 											<span class="authorize-cardholdername">
-												<input type="text" name="' . $tag->basetype . '[cardholdername]" size="20" class="' . $class . '" required/>
+												<input type="text" name="' . esc_attr($tag->basetype) . '[cardholdername]" size="20" class="' . esc_attr($class) . '" required/>
 											</span>
 										</p>
 										<p>
-											<label>'.__( "Card Number (required)", "contact-form-7-authorize-net-addon" ).'</label>
+											<label>'.esc_html__( "Card Number (required)", "accept-authorize-net-payments-using-contact-form-7" ).'</label>
 											<span class="authorize-cardnumber">
-												<input type="number" name="' . $tag->basetype . '[card_number]" data-authorize="number" class="' . $class . '" size="16" required/>
+												<input type="number" name="' . esc_attr($tag->basetype) . '[card_number]" data-authorize="number" class="' . esc_attr($class) . '" size="16" required/>
 											</span>
 										</p>
 										<p>
-											<label>'.__( "Card Expiry Date (required)", "contact-form-7-authorize-net-addon" ).'</label>
+											<label>'.esc_html__( "Card Expiry Date (required)", "accept-authorize-net-payments-using-contact-form-7" ).'</label>
 											<span class="authorize-expires">
-												<input type="number" name="' . $tag->basetype . '[exp_month]" data-authorize="exp-month" size="2" maxlength="2" class="' . $class . '" id="authorize-month" placeholder="MM" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "2" required/>
+												<input type="number" name="' . esc_attr($tag->basetype) . '[exp_month]" data-authorize="exp-month" size="2" maxlength="2" class="' . esc_attr($class) . '" id="authorize-month" placeholder="MM" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "2" required/>
 												<span class="cart-separation"></span>
-												<input type="number" name="' . $tag->basetype . '[exp_year]" data-authorize="exp-year" min="' . esc_attr( date( 'Y' ) ) . '" max="2050" size="4" class="' . $class . '" id="authorize-year" placeholder="YYYY" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "4" required/>
+												<input type="number" name="' . esc_attr($tag->basetype) . '[exp_year]" data-authorize="exp-year" min="' . esc_attr( gmdate( 'Y' ) ) . '" max="2050" size="4" class="' . esc_attr($class) . '" id="authorize-year" placeholder="YYYY" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "4" required/>
 											</span>
 										</p>
 										<p>
-											<label>'.__( "Card CVV (required)", "contact-form-7-authorize-net-addon" ).'</label>
+											<label>'.esc_html__( "Card CVV (required)", "accept-authorize-net-payments-using-contact-form-7" ).'</label>
 											<span class="authorize-cvv">
-												<input type="text" name="' . $tag->basetype . '[cvv_number]" data-authorize="cvc" class="' . $class . '" size="4" placeholder="CVV" required/>
+												<input type="text" name="' . esc_attr($tag->basetype) . '[cvv_number]" data-authorize="cvc" class="' . esc_attr($class) . '" size="4" placeholder="CVV" required/>
 											</span>
 										</p>',
-										$validation_error
+										esc_attr($validation_error)
 									) .
 								'</div>';
 						}
@@ -1094,19 +1101,19 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 			if ( !empty( $mode_sandbox ) ) {
 
 				if ( empty( $sandbox_login_id ) )
-					return __( 'Please enter Sandbox Login ID.', CF7ADN_PREFIX );
+					return __( 'Please enter Sandbox Login ID.', 'accept-authorize-net-payments-using-contact-form-7' );
 
 				if ( empty( $sandbox_transaction_key ) )
-					return __( 'Please enter Sandbox Transaction Key.', CF7ADN_PREFIX );
+					return __( 'Please enter Sandbox Transaction Key.', 'accept-authorize-net-payments-using-contact-form-7' );
 			}
 
 			if ( empty( $mode_sandbox ) ) {
 
 				if ( empty( $live_login_id ) )
-					return __( 'Please enter Merchant Login ID.', CF7ADN_PREFIX );
+					return __( 'Please enter Merchant Login ID.', 'accept-authorize-net-payments-using-contact-form-7' );
 
 				if ( empty( $live_transaction_key ) )
-					return __( 'Please enter Merchant Transaction Key.', CF7ADN_PREFIX );
+					return __( 'Please enter Merchant Transaction Key.', 'accept-authorize-net-payments-using-contact-form-7' );
 			}
 
 			return false;

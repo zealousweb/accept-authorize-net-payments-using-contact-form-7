@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Contact Form 7 - Authorize.NET Add-on 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-form-7-authorize-net-addon\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accept-authorize-net-payments-using-contact-form-7\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "POT-Creation-Date: 2019-08-26T13:43:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
-"X-Domain: contact-form-7-authorize-net-addon\n"
+"X-Domain: accept-authorize-net-payments-using-contact-form-7\n"
 
 #. Plugin Name of the plugin
 msgid "Contact Form 7 - Authorize.NET Add-on"
