@@ -44,6 +44,15 @@ The Add-on provides you the option to make payment only once. There is no recurr
 
 <strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
 
+= Features of Accept Authorize.NET Payments Using Contact Form 7 Pro =
+
+* Saves the payment related data into the database.
+* Dashboard page with all transaction details with GUI graph.
+* Debug Log view in Separate file & Set Schedule to Delete it periodically.
+* Email Templates For contact form 7.
+* Refund Feature.
+* Dashboard Widget to show data on WP dashboard.
+
 <strong>[Get more information of Pro version here](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
 <strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro/)</strong>
 
