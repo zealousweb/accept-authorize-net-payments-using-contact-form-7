@@ -4,12 +4,12 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, contact form, contact form 7
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.6
+Tested up to: 6.8
 CF7 requires at least: 5.0
 CF7 tested up to: 5.7.5.1
-Version: 2.4
+Version: 2.5
 CF7 tested up to: 5.8
-Stable tag: 2.4
+Stable tag: 2.5
 License: GPLv3 or later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -42,17 +42,34 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
 * Compatibility of WordPress VIP
 
+<strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
+
+= Features of Accept Authorize.NET Payments Using Contact Form 7 Pro =
+
+* Saves the payment related data into the database.
+* Dashboard page with all transaction details with GUI graph.
+* Debug Log view in Separate file & Set Schedule to Delete it periodically.
+* Email Templates For contact form 7.
+* Refund Feature.
+* Dashboard Widget to show data on WP dashboard.
+
+<strong>[Get more information of Pro version here](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+<strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro/)</strong>
+
 == OUR OTHER PLUGINS ==
 
-* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-paypal-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-stripe-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7)</strong>
-* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://store.zealousweb.com/accept-elavon-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept 2Checkout Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-2checkout-payments-using-contact-form-7-pro)</strong>
-* <strong>[Accept Sage Pay Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
-* <strong>[User Registration Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/user-registration-using-contact-form-7-pro)</strong>
 * <strong>[Abandoned Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/abandoned-contact-form-7-pro)</strong>
+* <strong>[Accept 2 Checkout Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-2checkout-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Authorize.NET Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Elavon Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-elavon-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept PayPal Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-paypal-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Sagepay(Opayo) Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-sage-pay-opayo-payments-using-contact-form-7-pro)</strong>
+* <strong>[Accept Stripe Payments Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/accept-stripe-payments-using-contact-form-7-pro)</strong>
 * <strong>[Custom Product Options WooCommerce Pro](https://store.zealousweb.com/wordpress-plugins/custom-product-options-woocommerce-pro)</strong>
+* <strong>[Generate PDF Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/generate-pdf-using-contact-form-7-pro)</strong>
+* <strong>[Smart Appointment & Booking Pro](https://store.zealousweb.com/wordpress-plugins/smart-appointment-booking-pro)</strong>
+* <strong>[Smart Showcase for Google Reviews Pro](https://store.zealousweb.com/wordpress-plugins/smart-showcase-for-google-reviews-pro)</strong>
+* <strong>[User Registration Using Contact Form 7 Pro](https://store.zealousweb.com/wordpress-plugins/user-registration-using-contact-form-7-pro)</strong>
 
 = Getting Help With Wordpress =
 
@@ -87,6 +104,9 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.5 =
+* Minor changes - Doc update
 
 = 2.4 =
 * Minor adjustments regarding workflow
