@@ -4,7 +4,7 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, contact form, contact form 7
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.6
+Tested up to: 6.8
 CF7 requires at least: 5.0
 CF7 tested up to: 5.7.5.1
 Version: 2.5
@@ -42,10 +42,10 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * Provides Shortcode [authorize-details] to display the transaction ID, Amount with currency, and transaction status after the transaction is made.
 * Compatibility of WordPress VIP
 
-<strong>[Demo for Abandoned Contact Form 7](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
+<strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7/)</strong>
 
 <strong>[Get more information of Pro version here](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
-<strong>[Demo for Abandoned Contact Form 7](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro/)</strong>
+<strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro/)</strong>
 
 == OUR OTHER PLUGINS ==
 
