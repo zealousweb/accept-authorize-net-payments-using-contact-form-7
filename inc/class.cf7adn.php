@@ -119,7 +119,6 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			add_action('wp_ajax_cf7_cf7adn_validation',        array( $this, 'ajax__cf7_cf7adn_validation' ) );
 			add_action('wp_ajax_nopriv_cf7_cf7adn_validation', array( $this, 'ajax__cf7_cf7adn_validation' ) );
 
-			add_rewrite_rule( '^cf7adn-phpinfo(/(.*))?/?$', 'index.php?cf7adn-phpinfo=$matches[2]', 'top' );
 			flush_rewrite_rules(); //phpcs:ignore
 
 			/**
