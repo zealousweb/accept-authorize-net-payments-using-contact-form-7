@@ -86,4 +86,6 @@ label[for="cf7adn_customer_details"] .arrow-switch:after {
 #cf7adn_customer_details:not( :checked ) ~ .form-table label[for="cf7adn_customer_details"] .arrow-switch:after {
 	-webkit-transform: rotate(-90deg);
 			transform: rotate(-90deg);
+}#cf7adn_customer_details{
+	display: none;
 }

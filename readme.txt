@@ -4,12 +4,11 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, contact form, contact form 7
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.8
+Tested up to: 6.9
 CF7 requires at least: 5.0
-CF7 tested up to: 5.7.5.1
-Version: 2.6
-CF7 tested up to: 5.8
-Stable tag: 2.6
+CF7 tested up to: 6.1.4
+Version: 2.7
+Stable tag: 2.7
 License: GPLv3 or later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -104,6 +103,10 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.7 =
+* Tested with the latest version of WordPress (6.9).
+* Tested with the latest version of Contact Form 7 (6.1.4).
 
 = 2.6 =
 * Security Update

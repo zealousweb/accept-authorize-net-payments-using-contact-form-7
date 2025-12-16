@@ -46,6 +46,9 @@ if ( !class_exists( 'CF7ADN' ) ) {
 			if ( !is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
 				add_action( 'admin_notices', array( $this, 'action__admin_notices_deactive' ) );
 				deactivate_plugins( CF7ADN_PLUGIN_BASENAME );
+				if ( isset( $_GET['activate'] ) ) {
+			        unset( $_GET['activate'] );
+			    }
 			}
 
 
