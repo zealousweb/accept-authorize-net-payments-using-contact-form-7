@@ -19,7 +19,7 @@ if ( !function_exists( 'cf7adn_inlineScript_select2' ) ) {
 		ob_start();
 		?>
 		( function($) {
-			jQuery('#cf7adn_currency, #cf7adn_success_returnurl, #cf7adn_cancel_returnurl, #cf7adn_amount, #cf7adn_description, #cf7adn_quantity, #cf7adn_email' ).select2();
+			jQuery('#cf7adn_currency, #cf7adn_success_returnurl, #cf7adn_cancel_returnurl, #cf7adn_amount, #cf7adn_description, #cf7adn_quantity, #cf7adn_email',#cf7adn_phone, #cf7adn_fax, #cf7adn_first_name,#cf7adn_last_name, #cf7adn_company_name, #cf7adn_address, #cf7adn_city, #cf7adn_state, #cf7adn_zip_code, #cf7adn_country ).select2();
 		} )( jQuery );
 		<?php
 		return ob_get_clean();
@@ -63,6 +63,8 @@ $city                    = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'city',
 $state                   = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'state', true );
 $zip_code                = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'zip_code', true );
 $country                 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'country', true );
+$phone                 	 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'phone', true );
+$fax                 	 = get_post_meta( $post_id, CF7ADN_META_PREFIX . 'fax', true );
 
 
 $currency_code = array(
@@ -342,82 +344,174 @@ echo '<div class="cf7adn-settings">' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name">' .
-							esc_html__( 'First Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'first_name">' .
+							__( 'First Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'first_name" type="text" class="regular-text" value="' . esc_attr( $first_name ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'first_name" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'first_name" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $first_name, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name">' .
-							esc_html__( 'Last Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'last_name">' .
+							__( 'Last Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'last_name" type="text" class="regular-text" value="' . esc_attr( $last_name ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'last_name" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'last_name" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $last_name, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name">' .
-							esc_html__( 'Company Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'company_name">' .
+							__( 'Company Name', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name" name="' . esc_attr(CF7ADN_META_PREFIX) . 'company_name" type="text" class="regular-text" value="' . esc_attr( $company_name ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'company_name" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'company_name" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $company_name, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'address">' .
-							esc_html__( 'Address', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'address">' .
+							__( 'Address', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'address" name="' . esc_attr(CF7ADN_META_PREFIX) . 'address" type="text" class="regular-text" value="' . esc_attr( $address ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'address" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'address" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $address, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'city">' .
-							esc_html__( 'City', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'city">' .
+							__( 'City', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'city" name="' . esc_attr(CF7ADN_META_PREFIX) . 'city" type="text" class="regular-text" value="' . esc_attr( $city ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'city" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'city" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $city, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'state">' .
-							esc_html__( 'State', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'state">' .
+							__( 'State', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'state" name="' . esc_attr(CF7ADN_META_PREFIX) . 'state" type="text" class="regular-text" value="' . esc_attr( $state ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'state" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'state" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $state, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code">' .
-							esc_html__( 'Zip Code', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'zip_code">' .
+							__( 'Zip Code', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code" name="' . esc_attr(CF7ADN_META_PREFIX) . 'zip_code" type="text" class="regular-text" value="' . esc_attr( $zip_code ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'zip_code" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'zip_code" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $zip_code, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>' .
 				'<tr class="form-field hide-show">' .
 					'<th>' .
-						'<label for="' . esc_attr(CF7ADN_META_PREFIX) . 'country">' .
-							esc_html__( 'Country', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'<label for="' . CF7ADN_META_PREFIX . 'country">' .
+							__( 'Country', 'accept-authorize-net-payments-using-contact-form-7' ) .
 						'</label>' .
 					'</th>' .
 					'<td>' .
-						'<input id="' . esc_attr(CF7ADN_META_PREFIX) . 'country" name="' . esc_attr(CF7ADN_META_PREFIX) . 'country" type="text" class="regular-text" value="' . esc_attr( $country ) . '" />' .
+						'<select id="' . CF7ADN_META_PREFIX . 'country" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'country" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $country, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
+					'</td>' .
+				'</tr>' .
+				'<tr class="form-field hide-show">' .
+					'<th>' .
+						'<label for="' . CF7ADN_META_PREFIX . 'phone">' .
+							__( 'Phone', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'</label>' .
+						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-phone"></span>' .
+					'</th>' .
+					'<td>' .
+						'<select id="' . CF7ADN_META_PREFIX . 'phone" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'phone" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $phone, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
+					'</td>' .
+				'</tr>' .
+				'<tr class="form-field hide-show">' .
+					'<th>' .
+						'<label for="' . CF7ADN_META_PREFIX . 'fax">' .
+							__( 'Fax', 'accept-authorize-net-payments-using-contact-form-7' ) .
+						'</label>' .
+						'<span class="cf7adn-tooltip hide-if-no-js" id="cf7adn-fax"></span>' .
+					'</th>' .
+					'<td>' .
+						'<select id="' . CF7ADN_META_PREFIX . 'fax" class="form-required-fields" name="' . CF7ADN_META_PREFIX . 'fax" >';
+							echo '<option value="">Select Field Name</option>';
+								if ( !empty( $cf7adntags ) ) {
+									foreach ( $cf7adntags as $key => $value ) {
+										echo '<option value="' . esc_attr( $value ) . '" ' . selected( $fax, $value, false ) . '>' . esc_attr( $value ) . '</option>';
+									}
+								}
+						echo '</select>' .
 					'</td>' .
 				'</tr>';
 
@@ -594,6 +688,34 @@ add_action('admin_print_footer_scripts', function() {
 			        position: 'left center',
 			    }).pointer('open');
 			});
+
+			jQuery( '#cf7adn-phone' ).on( 'mouseenter click', function() {
+				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
+				jQuery( '#cf7adn-phone' ).pointer({
+					pointerClass: 'wp-pointer cf7adn-pointer',
+					content: '<?php
+						_e( '<h3>Phone</h3>' .
+						'<p>Works only with standard single payment transactions.</p>'.
+						'<p><strong><span style="color:red">Note:</span> It does not work with the recurring payment option.</strong></p>',
+						'accept-authorize-net-payments-using-contact-form-7'
+					); ?>',
+					position: 'left center',
+				} ).pointer('open');
+			} );
+
+			jQuery( '#cf7adn-fax' ).on( 'mouseenter click', function() {
+				jQuery( 'body .wp-pointer-buttons .close' ).trigger( 'click' );
+				jQuery( '#cf7adn-fax' ).pointer({
+					pointerClass: 'wp-pointer cf7adn-pointer',
+					content: '<?php
+						_e( '<h3>Fax</h3>' .
+						'<p>Works only with standard single payment transactions.</p>'.
+						'<p><strong><span style="color:red">Note:</span> It does not work with the recurring payment option.</strong></p>',
+						'accept-authorize-net-payments-using-contact-form-7'
+					); ?>',
+					position: 'left center',
+				} ).pointer('open');
+			} );
 		} );
 	</script>
 	<?php

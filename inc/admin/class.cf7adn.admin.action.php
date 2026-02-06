@@ -432,6 +432,8 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 				CF7ADN_META_PREFIX . 'state',
 				CF7ADN_META_PREFIX . 'zip_code',
 				CF7ADN_META_PREFIX . 'country',
+				CF7ADN_META_PREFIX . 'phone',
+				CF7ADN_META_PREFIX . 'fax',
 			);
 
 			/**

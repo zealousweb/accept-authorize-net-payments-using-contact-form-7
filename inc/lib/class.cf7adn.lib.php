@@ -300,6 +300,8 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 					$state                   = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'state', true );
 					$zip_code                = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'zip_code', true );
 					$country                 = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'country', true );
+					$phone                 	 = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'phone', true );
+					$fax                 	 = get_post_meta( $form_ID, CF7ADN_META_PREFIX . 'fax', true );
 
 					if (
 						!empty( $first_name )
@@ -369,6 +371,28 @@ if ( !class_exists( 'CF7ADN_Lib' ) ) {
 							
 						}else{
 							$customerAddress->setCountry( $country_data );
+						}
+					}
+
+					if ( !empty( $phone )
+						and $phone_data = ( ( !empty( $phone ) && array_key_exists( $phone, $posted_data ) ) ? $posted_data[$phone] : '' )
+					) {
+						if(is_array($phone_data)){
+							$customerAddress->setPhoneNumber( $phone_data['0'] );
+
+						}else{
+							$customerAddress->setPhoneNumber( $phone_data );
+						}
+					}
+
+					if ( !empty( $fax )
+						and $fax_data = ( ( !empty( $fax ) && array_key_exists( $fax, $posted_data ) ) ? $posted_data[$fax] : '' )
+					) {
+						if(is_array($fax_data)){
+							$customerAddress->setFaxNumber( $fax_data['0'] );
+
+						}else{
+							$customerAddress->setFaxNumber( $fax_data );
 						}
 					}
 
