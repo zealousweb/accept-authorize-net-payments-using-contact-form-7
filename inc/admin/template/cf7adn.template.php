@@ -19,7 +19,7 @@ if ( !function_exists( 'cf7adn_inlineScript_select2' ) ) {
 		ob_start();
 		?>
 		( function($) {
-			jQuery('#cf7adn_currency, #cf7adn_success_returnurl, #cf7adn_cancel_returnurl, #cf7adn_amount, #cf7adn_description, #cf7adn_quantity, #cf7adn_email',#cf7adn_phone, #cf7adn_fax, #cf7adn_first_name,#cf7adn_last_name, #cf7adn_company_name, #cf7adn_address, #cf7adn_city, #cf7adn_state, #cf7adn_zip_code, #cf7adn_country ).select2();
+			jQuery('#cf7adn_currency, #cf7adn_success_returnurl, #cf7adn_cancel_returnurl, #cf7adn_amount, #cf7adn_description, #cf7adn_quantity, #cf7adn_email, #cf7adn_phone, #cf7adn_fax, #cf7adn_first_name, #cf7adn_last_name, #cf7adn_company_name, #cf7adn_address, #cf7adn_city, #cf7adn_state, #cf7adn_zip_code, #cf7adn_country').select2();
 		} )( jQuery );
 		<?php
 		return ob_get_clean();
