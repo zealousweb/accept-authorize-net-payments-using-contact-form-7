@@ -4,11 +4,11 @@ Contributors: zealopensource
 Tags: accept credit card payment, Additional Settings, contact form, contact form 7
 Donate link: http://www.zealousweb.com/payment/
 Requires at least: 4.9
-Tested up to: 6.9
+Tested up to: 7.0
 CF7 requires at least: 5.0
 CF7 tested up to: 6.1.4
-Version: 2.8
-Stable tag: 2.8
+Version: 2.9
+Stable tag: 2.9
 License: GPLv3 or later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -103,6 +103,9 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.9 =
+* Comprehensive Customer Data: Collect complete customer information directly via Contact Form 7.
 
 = 2.8 =
 * Comprehensive Customer Data: Collect complete customer information directly via Contact Form 7.
