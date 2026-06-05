@@ -7,8 +7,8 @@ Requires at least: 4.9
 Tested up to: 6.9
 CF7 requires at least: 5.0
 CF7 tested up to: 6.1.4
-Version: 2.7
-Stable tag: 2.7
+Version: 2.8
+Stable tag: 2.8
 License: GPLv3 or later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -103,6 +103,13 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 5. Authorize.NET Import CSV Page
 
 == Changelog ==
+
+= 2.8 =
+* Comprehensive Customer Data: Collect complete customer information directly via Contact Form 7.
+* Additional Contact Details: Capture extra contact information, including phone numbers and fax numbers.
+* Extended Transaction Records: Store detailed customer data securely with each transaction.
+* Enhanced Tracking & Monitoring: Improve transaction tracking and monitoring using detailed customer records.
+* Easy Admin Management: Simplify customer record management for administrators.
 
 = 2.7 =
 * Tested with the latest version of WordPress (6.9).
