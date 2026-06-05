@@ -21,6 +21,7 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 		function __construct()  {
 
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_cf7adn_scripts' ),999 );
 			add_action( 'init',           array( $this, 'action__init' ) );
 			add_action( 'init',           array( $this, 'action__init_99' ), 99 );
 			add_action( 'add_meta_boxes', array( $this, 'action__add_meta_boxes' ) );
@@ -67,6 +68,14 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 
 			wp_register_style( 'select2', CF7ADN_URL . 'assets/css/select2.min.css', array(), '4.0.7' );
 			wp_register_script( 'select2', CF7ADN_URL . 'assets/js/select2.min.js', array( 'jquery-core' ), '4.0.7' ,true);
+		}
+
+		/**
+		 * enqueue script and style for plugin
+		 */
+
+		function admin_cf7adn_scripts() {
+			wp_enqueue_style( CF7ADN_PREFIX . '-style-admin', CF7ADN_URL .'assets/css/admin.css' );
 		}
 
 		/**
@@ -585,6 +594,10 @@ if ( !class_exists( 'CF7ADN_Admin_Action' ) ){
 			echo '</select>';
 
 			echo '<input type="submit" id="export_csv" name="export_csv" class="button action" value="' . esc_attr__( 'Export CSV', 'accept-authorize-net-payments-using-contact-form-7' ) . '"> ';
+
+			echo '<a class="cf7adn-primary-btn" href="https://support.zealousweb.com/portal/en/home" target="_blank" rel="noopener noreferrer">'
+				. esc_html__( 'Open Support Ticket', 'accept-authorize-net-payments-using-contact-form-7' ) .
+			'</a>';
 
 		}
 
