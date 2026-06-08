@@ -105,6 +105,7 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 == Changelog ==
 
 = 2.9 =
+* Added a new "Open Support Ticket" button to provide quick and direct access to support
 * Comprehensive Customer Data: Collect complete customer information directly via Contact Form 7.
 
 = 2.8 =
