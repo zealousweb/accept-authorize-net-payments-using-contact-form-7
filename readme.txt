@@ -51,6 +51,11 @@ The Add-on provides you the option to make payment only once. There is no recurr
 * Email Templates For contact form 7.
 * Refund Feature.
 * Dashboard Widget to show data on WP dashboard.
+* Integrated Google Pay (GPAY) support with Authorize.NET for Contact Form 7 Pro.
+* Recurring Payment accept with Authorize.NET with cancel recurring option from admin.
+* Refund functionality
+* Recurring Payment accept with Authorize.NET with cancel recurring option from admin.
+* Compatibility of WordPress VIP.
 
 <strong>[Get more information of Pro version here](https://store.zealousweb.com/accept-authorize-net-payments-using-contact-form-7-pro)</strong>
 <strong>[Demo for Accept Authorize.NET Payments Using Contact Form 7 Pro](https://demo.zealousweb.com/wordpress-plugins/accept-authorize-net-payments-using-contact-form-7-pro/)</strong>
@@ -105,7 +110,7 @@ That's it! Just configure your settings as you see fit, and you're on your way t
 == Changelog ==
 
 = 2.9 =
-* Added a new "Open Support Ticket" button to provide quick and direct access to support
+* Added a new "Open Support Ticket" button to provide quick and direct access to support.
 * Comprehensive Customer Data: Collect complete customer information directly via Contact Form 7.
 
 = 2.8 =
